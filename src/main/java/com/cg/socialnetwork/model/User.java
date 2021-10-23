@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.List;
 
@@ -31,20 +32,17 @@ public class User extends BaseEntity {
     @NotBlank
     private String lastName;
 
-    @NotBlank
+    @NotNull
     private Date dateOfBirth;
 
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
+    private Boolean status;
+
     private int city;
 
     private int country;
-
-//    private String avatar;
-
-//    @Column(name = "image_id",insertable=false, updatable= false)
-//    private long mediaId;
 
     @ManyToOne
     @JoinColumn(name = "image_id",referencedColumnName = "id")
@@ -72,12 +70,13 @@ public class User extends BaseEntity {
         this.country = country;
     }
 
-    public User(String email, @NotBlank String password, @NotBlank String firstName, @NotBlank String lastName, @NotBlank Date dateOfBirth, Gender gender) {
+    public User(String email, @NotBlank String password, @NotBlank String firstName, @NotBlank String lastName, @NotBlank Date dateOfBirth, Gender gender, Boolean status) {
         this.email = email;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
         this.gender = gender;
+        this.status = status;
     }
 }
