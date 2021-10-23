@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace = "layout/head :: head-login">
+    </th:block>
+</head>
+<body>
+<div class="container-main">
+    <div class="main">
+        <div class="main-left">
+            <p class="social-logo">SocialBook</p>
+            <p class="social-slogan">SocialBook helps you connect and share with the people in your life</p>
+        </div>
+        <div class="main-right">
+            <div class="main-right__login">
+                <form th:action="@{/login}" method="POST" id="frm-login" th:object="${user}">
+                    <div class="login-element login-input">
+                        <input type="email" name="email" class="input-email" placeholder="Email address or phone number">
+                    </div>
+                    <div class="login-element login-input">
+                        <input type="password" name="password" class="input-pw" placeholder="Password">
+                    </div>
+
+                    <div class="login-element">
+                        <h4 style="text-align:center" class="btn-danger" th:text="${mess}"></h4>
+                    </div>
+
+                    <div class="login-element login-button">
+                        <button type="submit" class="login-btn">Log In</button>
+                        <!--                        <input type="submit" value="login">-->
+                    </div>
+                </form>
+
+                <div class="login-element login-link">
+                    <a href="#">Forgotten account?</a>
+                </div>
+
+                <div class="login-element login-line">
+
+                </div>
+
+                <div class="login-element login-account">
+                    <button type="button" class="btn btn-primary"
+                            data-bs-toggle="modal" data-bs-target="#createAccount">
+                        Create New Account
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <th:block th:replace="layout/footer :: footer">
+        </th:block>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="createAccount" data-bs-backdrop="static" data-bs-keyboard="false"
+         tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Sign Up</h5>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="" id="frm-sign-up">
+                        <div class="modal-alert-danger">
+
+                        </div>
+                        <div class="sign-up-element sign-up-name">
+                            <input type="text" id="firstName" name="firstName" placeholder="First name">
+                            <input type="text" id="lastName" name="lastName" placeholder="Last name">
+                        </div>
+                        <div class="sign-up-element sign-up-input">
+                            <input type="email" id="email" name="email" placeholder="Email address or phone number">
+                        </div>
+                        <div class="sign-up-element sign-up-input">
+                            <input type="password" id="password" name="password" placeholder="Password">
+                        </div>
+                        <div class="sign-up-element sign-up-input">
+                            <input type="password" id="repassword" name="repassword" placeholder="Re-Password">
+                        </div>
+                        <div class="sign-up-date-birth">
+                            <label>Date of birth</label>
+                            <div class="date-birth-alert"><a>&#63;</a></div>
+                        </div>
+                        <div class="sign-up-selection">
+                            <div class="select-choice">
+                                <select name="selectDay">
+                                    <option value="1">01</option>
+                                    <option value="2">02</option>
+                                    <option value="3">03</option>
+                                    <option value="4">04</option>
+                                    <option value="5">05</option>
+                                    <option value="6">06</option>
+                                    <option value="7">07</option>
+                                    <option value="8">08</option>
+                                    <option value="9">09</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                    <option value="13">13</option>
+                                    <option value="14">14</option>
+                                    <option value="15">15</option>
+                                    <option value="16">16</option>
+                                    <option value="17">17</option>
+                                    <option value="18">18</option>
+                                    <option value="19">19</option>
+                                    <option value="20">20</option>
+                                    <option value="21">21</option>
+                                    <option value="22">22</option>
+                                    <option value="23">23</option>
+                                    <option value="24">24</option>
+                                    <option value="25">25</option>
+                                    <option value="26">26</option>
+                                    <option value="27">27</option>
+                                    <option value="28">28</option>
+                                    <option value="29">29</option>
+                                    <option value="30">30</option>
+                                    <option value="31">31</option>
+                                </select>
+                            </div>
+                            <div class="select-choice">
+                                <select name="selectMonth">
+                                    <option value="01">Jan</option>
+                                    <option value="02">Jeb</option>
+                                    <option value="03">Mar</option>
+                                    <option value="04">Apr</option>
+                                    <option value="05">May</option>
+                                    <option value="06">Jun</option>
+                                    <option value="07">Jul</option>
+                                    <option value="08">Aug</option>
+                                    <option value="09">Sep</option>
+                                    <option value="10">Oct</option>
+                                    <option value="11">Nov</option>
+                                    <option value="12">Dec</option>
+                                </select>
+                            </div>
+                            <div class="select-choice">
+                                <select name="selectYear">
+                                    <option value="2021">2021</option>
+                                    <option value="2020">2020</option>
+                                    <option value="2019">2019</option>
+                                    <option value="2018">2018</option>
+                                    <option value="2017">2017</option>
+                                    <option value="2016">2016</option>
+                                    <option value="2015">2015</option>
+                                    <option value="2014">2014</option>
+                                    <option value="2013">2013</option>
+                                    <option value="2012">2012</option>
+                                    <option value="2011">2011</option>
+                                    <option value="2010">2010</option>
+                                    <option value="2009">2009</option>
+                                    <option value="2008">2008</option>
+                                    <option value="2007">2007</option>
+                                    <option value="2006">2006</option>
+                                    <option value="2005">2005</option>
+                                    <option value="2004">2004</option>
+                                    <option value="2003">2003</option>
+                                    <option value="2002">2002</option>
+                                    <option value="2001">2001</option>
+                                    <option value="2000">2000</option>
+                                    <option value="1999">1999</option>
+                                    <option value="1998">1998</option>
+                                    <option value="1997">1997</option>
+                                    <option value="1996">1996</option>
+                                    <option value="1995">1995</option>
+                                    <option value="1994">1994</option>
+                                    <option value="1993">1993</option>
+                                    <option value="1992">1992</option>
+                                    <option value="1991">1991</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="sign-up-gender">
+                            <label>Gender</label>
+                            <div class="gender-alert"><a>&#63;</a></div>
+                        </div>
+                        <div class="sign-up-gender-choice">
+                            <div class="gender-name">
+                                <label>Female</label>
+                                <input type="radio" value="F" name="gender">
+                            </div>
+                            <div class="gender-name">
+                                <label>Male</label>
+                                <input type="radio" value="M" name="gender">
+                            </div>
+                        </div>
+                    </form>
+
+                    <div class="sign-up-terms">
+                        <p>
+                            By clicking Sign Up, you agree to our Terms, Data Policy and Cookie Policy.
+                            You may receive SMS notifications from us and can opt out at any time.
+                        </p>
+                    </div>
+                    <div class="sign-up-button">
+                        <button type="button" id="btnSignUp" class="sign-up-submit">Sign Up</button>
+                    </div>
+                </div>
+                <!--                <div class="modal-footer">-->
+                <!--                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>-->
+                <!--                    <button type="button" class="btn btn-primary">Save changes</button>-->
+                <!--                </div>-->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const frmLogin = $("#frm-login");
+        const showErrorLogin = $("#frmLogin .alert-danger");
+        const frmSignUp =  $("#frm-sign-up");
+        const btnSignUp = $("#btnSignUp");
+        frmLogin.validate({
+            onkeyup: function (element) {
+                $(element).valid()
+            },
+            onclick: false,
+            onfocusout: false,
+            rules: {
+                email: {
+                    required: true,
+                    minlength: 5,
+                    maxlength: 50
+                },
+                password: {
+                    required: true,
+                    minlength: 5,
+                    maxlength: 50
+                }
+            },
+            errorLabelContainer: "#frmLogin .alert-danger",
+            errorPlacement: function (error, element) {
+                error.appendTo("#frmLogin .modal-alert-danger");
+            },
+            showErrors: function (errorMap, errorList) {
+                if (this.numberOfInvalids() > 0) {
+                    showErrorLogin.removeClass("hide").addClass("show");
+                } else {
+                    showErrorLogin.removeClass("show").addClass("hide").empty();
+                    $("#frmLogin input.error").removeClass("error");
+                }
+                this.defaultShowErrors();
+            },
+            message: {
+                email: {
+                    required: "Vui lòng nhập đầy đủ email",
+                    minlength: "Họ tên tối thiểu 5 ký tự",
+                    maxlength: "Họ tên tối đa 50 ký tự"
+                },
+                password: {
+                    required: "Vui lòng nhập đầy đủ password",
+                    minlength: "Họ tên tối thiểu 5 ký tự",
+                    maxlength: "Họ tên tối đa 50 ký tự"
+                }
+            },
+        });
+
+        btnSignUp.on("click", function () {
+            frmSignUp.submit();
+        })
+
+
+        frmSignUp.validate({
+            onkeyup: function (element) {
+                $(element).valid()
+            },
+            onclick: false,
+            onfocusout: false,
+            rules: {
+                firstName: {
+                    required: true,
+                    minlength: 5,
+                    maxlength: 50
+                },
+                lastName: {
+                    required: true,
+                    minlength: 5,
+                    maxlength: 50
+                },
+                email: {
+                    required: true,
+                    minlength: 5,
+                    maxlength: 50
+                },
+                password: {
+                    required: true,
+                    minlength: 5,
+                    maxlength: 50
+                },
+                repassword: {
+                    required: true,
+                    minlength: 5,
+                    maxlength: 50
+                }
+            },
+            errorLabelContainer: "#frmLogin .modal-alert-danger",
+            errorPlacement: function (error, element) {
+                error.appendTo("#frm-sign-up .modal-alert-danger");
+            },
+            showErrors: function (errorMap, errorList) {
+                if (this.numberOfInvalids() > 0) {
+                    showErrorLogin.removeClass("hide").addClass("show");
+                } else {
+                    showErrorLogin.removeClass("show").addClass("hide").empty();
+                    $("#frmLogin input.error").removeClass("error");
+                }
+                this.defaultShowErrors();
+            },
+            messages: {
+                firstName: {
+                    required: "Vui lòng nhập đầy đủ tên",
+                    minlength: "Họ tên tối thiểu 5 ký tự",
+                    maxlength: "Họ tên tối đa 50 ký tự"
+                },
+                lastName: {
+                    required: "Vui lòng nhập đầy đủ tên",
+                    minlength: "Họ tên tối thiểu 5 ký tự",
+                    maxlength: "Họ tên tối đa 50 ký tự"
+                },
+                email: {
+                    required: "Vui lòng nhập đầy đủ email",
+                    minlength: "Họ tên tối thiểu 5 ký tự",
+                    maxlength: "Họ tên tối đa 50 ký tự"
+                },
+                password: {
+                    required: "Vui lòng nhập đầy đủ password",
+                    minlength: "Họ tên tối thiểu 5 ký tự",
+                    maxlength: "Họ tên tối đa 50 ký tự"
+                },
+                repassword: {
+                    required: "Vui lòng nhập đầy đủ re-password",
+                    minlength: "Họ tên tối thiểu 5 ký tự",
+                    maxlength: "Họ tên tối đa 50 ký tự"
+                }
+            },submitHandler: function () {
+                createAccount();
+            }
+        });
+
+
+
+        // function sign up
+        signUpAccount = () => {
+            let day = $('select[name=selectDay] option').filter(':selected').val();
+            let month = $('select[name=selectMonth] option').filter(':selected').val();
+            let year = $('select[name=selectYear] option').filter(':selected').val();
+            let dob = day + "/" + month + "/" + year;
+            let account = {
+                "firstName": $("#firstName").val(),
+                "lastName": $("#lastName").val(),
+                "password": $("#password").val(),
+                "repassword": $("#repassword").val(),
+                "dateOfBirth": dob,
+                "email": $("#email").val(),
+                "gender": $("#frm-sign-up input[type='radio']:checked").val()
+            }
+            return account;
+        }
+
+        // ajax sign up
+        createAccount = () => {
+            let account = signUpAccount();
+            $.ajax({
+                type: "POST",
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                url: location.origin +"/api/login/register",
+                data: JSON.stringify(account)
+            }).done((data) => {
+                alert("success");
+                $("#createAccount").modal("hide");
+                $('#frm-sign-up')[0].reset();
+            })
+                .fail((jqXHR) => {
+                    let str = '';
+                    if (jqXHR.responseJSON) {
+                        if (jqXHR.responseJSON.message) {
+                            str += `<label class="error">${jqXHR.responseJSON.message}</label>`;
+                        } else {
+                            $.each(jqXHR.responseJSON, function (key, value) {
+                                str += `<label id="${key}-error" class="error" for="${key}">${key + ": " + value}</label>`;
+                                $("#" + key).addClass("error");
+                            });
+                        }
+                    }
+                    $("#createAccount .modal-alert-danger").removeClass("hide").addClass("show");
+                    $("#createAccount .modal-alert-danger").append(str);
+                });
+        }
+
+        $('.sign-up-submit').on("click", function(){
+            $('.modal-alert-danger').removeClass("hide");
+        });
+
+        $('.btn-close').on("click", function(){
+            $('#frm-sign-up')[0].reset();
+            $('.modal-alert-danger').addClass("hide");
+            $('.modal-alert-danger').empty();
+            $('.error').removeClass('error');
+        });
+
+    </script>
+</div>
+</body>
+</html>

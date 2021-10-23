@@ -1,0 +1,24 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <th:block th:fragment = "write-post-container" >
+        <div class="write-post-container">
+            <div class="user-profile">
+                <img src="images/profile-pic.png" alt="">
+                <div>
+                    <p>John Nicholson</p>
+                    <small>Public <i class="fas fa-caret-down"></i></small>
+                </div>
+            </div>
+            <div class="post-input-container">
+                <textarea rows="3" placeholder="What's on your mind" class="post-content"></textarea>
+                <input type="file" class="post-content" alt="">
+                <div class="add-post-links">
+                    <a href="#"><img src="images/live-video.png" alt=""> Live Video</a>
+                    <a href="#"><img src="images/photo.png" alt=""> Photo/Video</a>
+                    <a href="#"><img src="images/feeling.png" alt=""> Feeling/Activity</a>
+                </div>
+                <div class="post-input">
+                    <a href="#" class="post-btn">Post</a>
+                </div>
+            </div>
+        </div>
+    </th:block>
