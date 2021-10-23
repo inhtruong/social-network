@@ -3,6 +3,7 @@ package com.cg.socialnetwork.controller.api;
 
 import com.cg.socialnetwork.exception.DataInputException;
 import com.cg.socialnetwork.exception.EmailExistsException;
+import com.cg.socialnetwork.model.Media;
 import com.cg.socialnetwork.model.User;
 //import com.cg.socialnetwork.model.dto.UserDTO;
 
@@ -34,6 +35,7 @@ public class LoginAPI {
         }else{
             if(userDTO.checkEqual()){
                 User user = userDTO.toUserSignUp();
+                user.setAvatar(new Media(1));
                 userService.save(user);
                 return new ResponseEntity<>(HttpStatus.OK);
             }else{
