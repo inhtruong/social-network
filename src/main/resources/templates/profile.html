@@ -14,26 +14,26 @@
     <!--------------- Heading End --------------->
 
     <div class="profile-container">
-        <img src="images/cover.png" alt="" class="cover-img">
+        <img src="/images/cover.png" alt="" class="cover-img">
         <div class="profile-details">
             <div class="pd-left">
                 <div class="pd-row">
-                    <img src="images/profile.png" alt="" class="pd-image">
+                    <img src="/images/profile.png" alt="" class="pd-image">
                     <div>
-                        <h3>Jack</h3>
+                        <span th:text="${user.get().firstName}"></span>
                         <p>120friends - 20 mutual</p>
-                        <img src="images/member-1.png" alt="">
-                        <img src="images/member-2.png" alt="">
-                        <img src="images/member-3.png" alt="">
-                        <img src="images/member-4.png" alt="">
+                        <img src="/images/member-1.png" alt="">
+                        <img src="/images/member-2.png" alt="">
+                        <img src="/images/member-3.png" alt="">
+                        <img src="/images/member-4.png" alt="">
                     </div>
                 </div>
             </div>
             <div class="pd-right">
-                <button type="button"><img src="images/add-friends.png" alt=""> Friend</button>
-                <button type="button"><img src="images/message.png" alt=""> Message</button>
+                <button type="button"><img src="/images/add-friends.png" alt=""> Friend</button>
+                <button type="button"><img src="/images/message.png" alt=""> Message</button>
                 <br>
-                <a href="#"><img src="images/more.png" alt=""></a>
+                <a href="#"><img src="/images/more.png" alt=""></a>
             </div>
         </div>
 
@@ -41,14 +41,15 @@
             <div class="info-col">
                 <div class="profile-intro">
                     <h3>Intro</h3>
-                    <p class="intro-text">Believe in yourself <img src="images/feeling.png" alt=""></p>
+                    <p class="intro-text">Believe in yourself <img src="/images/feeling.png" alt=""></p>
                     <hr>
                     <ul>
-                        <li><img src="images/profile-job.png" alt=""> ABC</li>
-                        <li><img src="images/profile-study.png" alt=""> ABC</li>
-                        <li><img src="images/profile-study.png" alt=""> ABC</li>
-                        <li><img src="images/profile-home.png" alt=""> ABC</li>
-                        <li><img src="images/profile-location.png" alt=""> ABC</li>
+                        <li><img src="/images/profile-job.png" alt=""> <span th:text="${user.get().firstName}"></span></li>
+                        <li><img src="/images/profile-study.png" alt=""> <span th:text="${user.get().email}"></span></li>
+                        <li><img src="/images/profile-study.png" alt=""> <span th:text="${user.get().gender}"></span></li>
+                        <li><img src="/images/profile-home.png" alt=""> <span th:text="${user.get().dateOfBirth}"></span></li>
+                        <li><img src="/images/profile-location.png" alt=""> <span th:text="${user.get().city}"></span></li>
+
                     </ul>
                 </div>
 
@@ -58,12 +59,12 @@
                         <a href="">All Photos</a>
                     </div>
                     <div class="box photo-box">
-                        <div><img src="images/photo1.png" alt=""></div>
-                        <div><img src="images/photo2.png" alt=""></div>
-                        <div><img src="images/photo3.png" alt=""></div>
-                        <div><img src="images/photo4.png" alt=""></div>
-                        <div><img src="images/photo5.png" alt=""></div>
-                        <div><img src="images/photo6.png" alt=""></div>
+                        <div><img src="/images/photo1.png" alt=""></div>
+                        <div><img src="/images/photo2.png" alt=""></div>
+                        <div><img src="/images/photo3.png" alt=""></div>
+                        <div><img src="/images/photo4.png" alt=""></div>
+                        <div><img src="/images/photo5.png" alt=""></div>
+                        <div><img src="/images/photo6.png" alt=""></div>
                     </div>
                 </div>
 
@@ -74,15 +75,15 @@
                     </div>
                     <p>120 (10 mutual)</p>
                     <div class="box friend-box">
-                        <div><img src="images/member-1.png" alt=""> <p>ABC</p></div>
-                        <div><img src="images/member-2.png" alt=""> <p>ABC</p></div>
-                        <div><img src="images/member-3.png" alt=""> <p>ABC</p></div>
-                        <div><img src="images/member-4.png" alt=""> <p>ABC</p></div>
-                        <div><img src="images/member-5.png" alt=""> <p>ABC</p></div>
-                        <div><img src="images/member-6.png" alt=""> <p>ABC</p></div>
-                        <div><img src="images/member-7.png" alt=""> <p>ABC</p></div>
-                        <div><img src="images/member-8.png" alt=""> <p>ABC</p></div>
-                        <div><img src="images/member-9.png" alt=""> <p>ABC</p></div>
+                        <div><img src="/images/member-1.png" alt=""> <p>ABC</p></div>
+                        <div><img src="/images/member-2.png" alt=""> <p>ABC</p></div>
+                        <div><img src="/images/member-3.png" alt=""> <p>ABC</p></div>
+                        <div><img src="/images/member-4.png" alt=""> <p>ABC</p></div>
+                        <div><img src="/images/member-5.png" alt=""> <p>ABC</p></div>
+                        <div><img src="/images/member-6.png" alt=""> <p>ABC</p></div>
+                        <div><img src="/images/member-7.png" alt=""> <p>ABC</p></div>
+                        <div><img src="/images/member-8.png" alt=""> <p>ABC</p></div>
+                        <div><img src="/images/member-9.png" alt=""> <p>ABC</p></div>
                     </div>
                 </div>
             </div>
