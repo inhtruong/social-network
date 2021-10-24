@@ -134,6 +134,10 @@ nav {
     flex-basis: 47%;
 }
 
+.search-content {
+    flex-basis: 72%;
+}
+
 .imp-links a, .shortcut-links a {
     text-decoration: none;
     display: flex;
