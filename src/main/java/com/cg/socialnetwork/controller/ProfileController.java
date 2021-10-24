@@ -23,7 +23,7 @@ public class ProfileController {
         if (!newUser.isPresent()){
             return new ModelAndView("/error");
         }
-        ModelAndView modelAndView = new ModelAndView("/profile");
+        ModelAndView modelAndView = new ModelAndView("profile");
         modelAndView.addObject("user",newUser);
         return modelAndView;
     }
