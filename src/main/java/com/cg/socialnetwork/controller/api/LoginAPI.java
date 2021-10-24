@@ -8,6 +8,7 @@ import com.cg.socialnetwork.model.User;
 //import com.cg.socialnetwork.model.dto.UserDTO;
 
 import com.cg.socialnetwork.model.dto.UserDTO;
+import com.cg.socialnetwork.model.enumModel.Gender;
 import com.cg.socialnetwork.service.user.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -35,7 +36,13 @@ public class LoginAPI {
         }else{
             if(userDTO.checkEqual()){
                 User user = userDTO.toUserSignUp();
-                user.setAvatar(new Media(1));
+                if (userDTO.getGender() == Gender.M) {
+                    user.setAvatar(new Media(2));
+                }
+                if (userDTO.getGender() == Gender.F) {
+                    user.setAvatar(new Media(3));
+                }
+                user.setBackground(new Media(1));
                 userService.save(user);
                 return new ResponseEntity<>(HttpStatus.OK);
             }else{
