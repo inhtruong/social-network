@@ -94,8 +94,8 @@ nav {
 
 .online::after {
     content: '' !important;
-    width: 7px !important;
-    height: 7px !important;
+    width: 10px !important;
+    height: 10px !important;
     border: 2px solid #fff !important;
     border-radius: 50% !important;
     background: #41db51 !important;
@@ -104,7 +104,7 @@ nav {
     right: 0;
 }
 
-.container-main {
+.main-container {
     display: flex;
     justify-content: space-between;
     padding: 13px 5%;
@@ -122,7 +122,6 @@ nav {
 .right-sidebar {
     
     flex-basis: 25%;
-
     top: 70px;
     align-self: flex-start;
     background: var(--bg-color);
@@ -246,9 +245,9 @@ nav {
 }
 
 .online-list .online {
-    width: 40px !important;
-    border-radius: 50px !important;
-    margin-right: 15px !important;
+    width: 40px;
+    border-radius: 50px;
+    margin-right: 15px;
 }
 
 .online-list .online::after {
@@ -287,6 +286,7 @@ nav {
     text-align: center;
     color: #fff;
     font-size: 14px;
+    margin-bottom: 0;
 }
 
 .story-1 {

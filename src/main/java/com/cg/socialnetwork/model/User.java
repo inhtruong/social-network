@@ -2,9 +2,11 @@ package com.cg.socialnetwork.model;
 
 import com.cg.socialnetwork.model.dto.UserDTO;
 import com.cg.socialnetwork.model.enumModel.Gender;
+import com.cg.socialnetwork.model.enumModel.MediaType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Controller;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -41,8 +43,10 @@ public class User extends BaseEntity {
 
     private Boolean status;
 
+//    @Column(columnDefinition = "integer default 1")
     private int city;
 
+//    @Column(columnDefinition = "integer default 25")
     private int country;
 
     @ManyToOne
@@ -58,6 +62,12 @@ public class User extends BaseEntity {
     private Media background;
 
 //    private boolean status = true;
+//    @PrePersist
+//    public void setAvatar(){
+//        if(avatar == null){
+//            avatar = new Media(1);
+//        }
+//    }
 
     public User(long id, String email, @NotBlank String password, @NotBlank String firstName,
                 @NotBlank String lastName, Gender gender, int city, int country) {

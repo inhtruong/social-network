@@ -2,8 +2,12 @@ package com.cg.socialnetwork.controller.api;
 
 import com.cg.socialnetwork.exception.DataInputException;
 import com.cg.socialnetwork.exception.EmailExistsException;
+import com.cg.socialnetwork.model.Media;
 import com.cg.socialnetwork.model.User;
 import com.cg.socialnetwork.model.dto.UserDTO;
+
+import com.cg.socialnetwork.model.enumModel.Gender;
+import com.cg.socialnetwork.service.user.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,6 +37,13 @@ public class AdminAPI {
         }else{
             if(userDTO.checkEqual()){
                 User user = userDTO.toUserSignUp();
+                if (userDTO.getGender() == Gender.M) {
+                    user.setAvatar(new Media(2));
+                }
+                if (userDTO.getGender() == Gender.F) {
+                    user.setAvatar(new Media(3));
+                }
+                user.setBackground(new Media(1));
                 userService.save(user);
                 return new ResponseEntity<>(userService.findByEmail(userDTO.getEmail()).get().toUserDTOAdmin(), HttpStatus.OK);
             }else{

@@ -24,4 +24,8 @@ public class Media {
     private String title;
 
     private String url;
+
+    public Media(long id) {
+        this.id = id;
+    }
 }
