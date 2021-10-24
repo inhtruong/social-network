@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/favicon.png">
+    <title>Matrix Template - The Ultimate Multipurpose admin template</title>
+    <!-- Custom CSS -->
+    <link href="/assets/libs/flot/css/float-chart.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="/dist/css/style.min.css" rel="stylesheet">
+    <th:block th:replace = "layout/head :: head-resources">
+    </th:block>
+</head>
+<body>
+<!-- ============================================================== -->
+<!-- Preloader - style you can find in spinners.css -->
+<!-- ============================================================== -->
+<div class="preloader">
+    <div class="lds-ripple">
+        <div class="lds-pos"></div>
+        <div class="lds-pos"></div>
+    </div>
+</div>
+<!-- ============================================================== -->
+<!-- Main wrapper - style you can find in pages.scss -->
+<!-- ============================================================== -->
+<div id="main-wrapper">
+    <!-- ============================================================== -->
+    <!-- Topbar header - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <header class="topbar" data-navbarbg="skin5">
+        <nav class="navbar top-navbar navbar-expand-md navbar-dark">
+            <div class="navbar-header" data-logobg="skin5">
+                <!-- This is for the sidebar toggle which is visible on mobile only -->
+                <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)"><i class="ti-menu ti-close"></i></a>
+                <!-- ============================================================== -->
+                <!-- Logo -->
+                <!-- ============================================================== -->
+                <a class="navbar-brand" href="index.html">
+                    <!-- Logo icon -->
+                    <b class="logo-icon p-l-10">
+                        <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
+                        <!-- Dark Logo icon -->
+                        <img src="../../assets/images/logo-icon.png" alt="homepage" class="light-logo" />
+
+                    </b>
+                    <!--End Logo icon -->
+                    <!-- Logo text -->
+                    <span class="logo-text">
+                             <!-- dark Logo text -->
+                             <img src="../../assets/images/logo-text.png" alt="homepage" class="light-logo" />
+
+                        </span>
+                    <!-- Logo icon -->
+                    <!-- <b class="logo-icon"> -->
+                    <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
+                    <!-- Dark Logo icon -->
+                    <!-- <img src="../../assets/images/logo-text.png" alt="homepage" class="light-logo" /> -->
+
+                    <!-- </b> -->
+                    <!--End Logo icon -->
+                </a>
+                <!-- ============================================================== -->
+                <!-- End Logo -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Toggle which is visible on mobile only -->
+                <!-- ============================================================== -->
+                <a class="topbartoggler d-block d-md-none waves-effect waves-light" href="javascript:void(0)" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><i class="ti-more"></i></a>
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Logo -->
+            <!-- ============================================================== -->
+            <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
+                <!-- ============================================================== -->
+                <!-- toggle and nav items -->
+                <!-- ============================================================== -->
+                <ul class="navbar-nav float-left mr-auto">
+                    <li class="nav-item d-none d-md-block"><a class="nav-link sidebartoggler waves-effect waves-light" href="javascript:void(0)" data-sidebartype="mini-sidebar"><i class="mdi mdi-menu font-24"></i></a></li>
+                    <!-- ============================================================== -->
+                    <!-- create new -->
+                    <!-- ============================================================== -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="d-none d-md-block">Create New <i class="fa fa-angle-down"></i></span>
+                            <span class="d-block d-md-none"><i class="fa fa-plus"></i></span>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                    </li>
+                    <!-- ============================================================== -->
+                    <!-- Search -->
+                    <!-- ============================================================== -->
+                    <li class="nav-item search-box"> <a class="nav-link waves-effect waves-dark" href="javascript:void(0)"><i class="ti-search"></i></a>
+                        <form class="app-search position-absolute">
+                            <input type="text" class="form-control" placeholder="Search &amp; enter"> <a class="srh-btn"><i class="ti-close"></i></a>
+                        </form>
+                    </li>
+                </ul>
+                <!-- ============================================================== -->
+                <!-- Right side toggle and nav items -->
+                <!-- ============================================================== -->
+                <ul class="navbar-nav float-right">
+                    <!-- ============================================================== -->
+                    <!-- Comment -->
+                    <!-- ============================================================== -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="mdi mdi-bell font-24"></i>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                    </li>
+                    <!-- ============================================================== -->
+                    <!-- End Comment -->
+                    <!-- ============================================================== -->
+                    <!-- ============================================================== -->
+                    <!-- Messages -->
+                    <!-- ============================================================== -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" id="2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="font-24 mdi mdi-comment-processing"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right mailbox animated bounceInDown" aria-labelledby="2">
+                            <ul class="list-style-none">
+                                <li>
+                                    <div class="">
+                                        <!-- Message -->
+                                        <a href="javascript:void(0)" class="link border-top">
+                                            <div class="d-flex no-block align-items-center p-10">
+                                                <span class="btn btn-success btn-circle"><i class="ti-calendar"></i></span>
+                                                <div class="m-l-10">
+                                                    <h5 class="m-b-0">Event today</h5>
+                                                    <span class="mail-desc">Just a reminder that event</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <!-- Message -->
+                                        <a href="javascript:void(0)" class="link border-top">
+                                            <div class="d-flex no-block align-items-center p-10">
+                                                <span class="btn btn-info btn-circle"><i class="ti-settings"></i></span>
+                                                <div class="m-l-10">
+                                                    <h5 class="m-b-0">Settings</h5>
+                                                    <span class="mail-desc">You can customize this template</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <!-- Message -->
+                                        <a href="javascript:void(0)" class="link border-top">
+                                            <div class="d-flex no-block align-items-center p-10">
+                                                <span class="btn btn-primary btn-circle"><i class="ti-user"></i></span>
+                                                <div class="m-l-10">
+                                                    <h5 class="m-b-0">Pavan kumar</h5>
+                                                    <span class="mail-desc">Just see the my admin!</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <!-- Message -->
+                                        <a href="javascript:void(0)" class="link border-top">
+                                            <div class="d-flex no-block align-items-center p-10">
+                                                <span class="btn btn-danger btn-circle"><i class="fa fa-link"></i></span>
+                                                <div class="m-l-10">
+                                                    <h5 class="m-b-0">Luanch Admin</h5>
+                                                    <span class="mail-desc">Just see the my new admin!</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <!-- ============================================================== -->
+                    <!-- End Messages -->
+                    <!-- ============================================================== -->
+
+                    <!-- ============================================================== -->
+                    <!-- User profile and search -->
+                    <!-- ============================================================== -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../../assets/images/users/1.jpg" alt="user" class="rounded-circle" width="31"></a>
+                        <div class="dropdown-menu dropdown-menu-right user-dd animated">
+                            <a class="dropdown-item" href="javascript:void(0)"><i class="ti-user m-r-5 m-l-5"></i> My Profile</a>
+                            <a class="dropdown-item" href="javascript:void(0)"><i class="ti-wallet m-r-5 m-l-5"></i> My Balance</a>
+                            <a class="dropdown-item" href="javascript:void(0)"><i class="ti-email m-r-5 m-l-5"></i> Inbox</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="javascript:void(0)"><i class="ti-settings m-r-5 m-l-5"></i> Account Setting</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="javascript:void(0)"><i class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a>
+                            <div class="dropdown-divider"></div>
+                            <div class="p-l-30 p-10"><a href="javascript:void(0)" class="btn btn-sm btn-success btn-rounded">View Profile</a></div>
+                        </div>
+                    </li>
+                    <!-- ============================================================== -->
+                    <!-- User profile and search -->
+                    <!-- ============================================================== -->
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <!-- ============================================================== -->
+    <!-- End Topbar header -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Left Sidebar - style you can find in sidebar.scss  -->
+    <!-- ============================================================== -->
+    <aside class="left-sidebar" data-sidebarbg="skin5">
+        <!-- Sidebar scroll-->
+        <div class="scroll-sidebar">
+            <!-- Sidebar navigation-->
+            <nav class="sidebar-nav">
+                <ul id="sidebarnav" class="p-t-30">
+                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.html" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Dashboard</span></a></li>
+                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="charts.html" aria-expanded="false"><i class="mdi mdi-chart-bar"></i><span class="hide-menu">Charts</span></a></li>
+                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="widgets.html" aria-expanded="false"><i class="mdi mdi-chart-bubble"></i><span class="hide-menu">Widgets</span></a></li>
+                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="tables.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Tables</span></a></li>
+                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="grid.html" aria-expanded="false"><i class="mdi mdi-blur-linear"></i><span class="hide-menu">Full Width</span></a></li>
+                    <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Forms </span></a>
+                        <ul aria-expanded="false" class="collapse  first-level">
+                            <li class="sidebar-item"><a href="form-basic.html" class="sidebar-link"><i class="mdi mdi-note-outline"></i><span class="hide-menu"> Form Basic </span></a></li>
+                            <li class="sidebar-item"><a href="form-wizard.html" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Form Wizard </span></a></li>
+                        </ul>
+                    </li>
+                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="pages-buttons.html" aria-expanded="false"><i class="mdi mdi-relative-scale"></i><span class="hide-menu">Buttons</span></a></li>
+                    <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-face"></i><span class="hide-menu">Icons </span></a>
+                        <ul aria-expanded="false" class="collapse  first-level">
+                            <li class="sidebar-item"><a href="icon-material.html" class="sidebar-link"><i class="mdi mdi-emoticon"></i><span class="hide-menu"> Material Icons </span></a></li>
+                            <li class="sidebar-item"><a href="icon-fontawesome.html" class="sidebar-link"><i class="mdi mdi-emoticon-cool"></i><span class="hide-menu"> Font Awesome Icons </span></a></li>
+                        </ul>
+                    </li>
+                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="pages-elements.html" aria-expanded="false"><i class="mdi mdi-pencil"></i><span class="hide-menu">Elements</span></a></li>
+                    <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-move-resize-variant"></i><span class="hide-menu">Addons </span></a>
+                        <ul aria-expanded="false" class="collapse  first-level">
+                            <li class="sidebar-item"><a href="index2.html" class="sidebar-link"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu"> Dashboard-2 </span></a></li>
+                            <li class="sidebar-item"><a href="pages-gallery.html" class="sidebar-link"><i class="mdi mdi-multiplication-box"></i><span class="hide-menu"> Gallery </span></a></li>
+                            <li class="sidebar-item"><a href="pages-calendar.html" class="sidebar-link"><i class="mdi mdi-calendar-check"></i><span class="hide-menu"> Calendar </span></a></li>
+                            <li class="sidebar-item"><a href="pages-invoice.html" class="sidebar-link"><i class="mdi mdi-bulletin-board"></i><span class="hide-menu"> Invoice </span></a></li>
+                            <li class="sidebar-item"><a href="pages-chat.html" class="sidebar-link"><i class="mdi mdi-message-outline"></i><span class="hide-menu"> Chat Option </span></a></li>
+                        </ul>
+                    </li>
+                    <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-account-key"></i><span class="hide-menu">Authentication </span></a>
+                        <ul aria-expanded="false" class="collapse  first-level">
+                            <li class="sidebar-item"><a href="authentication-login.html" class="sidebar-link"><i class="mdi mdi-all-inclusive"></i><span class="hide-menu"> Login </span></a></li>
+                            <li class="sidebar-item"><a href="authentication-register.html" class="sidebar-link"><i class="mdi mdi-all-inclusive"></i><span class="hide-menu"> Register </span></a></li>
+                        </ul>
+                    </li>
+                    <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-alert"></i><span class="hide-menu">Errors </span></a>
+                        <ul aria-expanded="false" class="collapse  first-level">
+                            <li class="sidebar-item"><a href="error-403.html" class="sidebar-link"><i class="mdi mdi-alert-octagon"></i><span class="hide-menu"> Error 403 </span></a></li>
+                            <li class="sidebar-item"><a href="error-404.html" class="sidebar-link"><i class="mdi mdi-alert-octagon"></i><span class="hide-menu"> Error 404 </span></a></li>
+                            <li class="sidebar-item"><a href="error-405.html" class="sidebar-link"><i class="mdi mdi-alert-octagon"></i><span class="hide-menu"> Error 405 </span></a></li>
+                            <li class="sidebar-item"><a href="error-500.html" class="sidebar-link"><i class="mdi mdi-alert-octagon"></i><span class="hide-menu"> Error 500 </span></a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <!-- End Sidebar navigation -->
+        </div>
+        <!-- End Sidebar scroll-->
+    </aside>
+    <!-- ============================================================== -->
+    <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Page wrapper  -->
+    <!-- ============================================================== -->
+    <div class="page-wrapper">
+        <!-- ============================================================== -->
+        <!-- Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <div class="page-breadcrumb">
+            <div class="row">
+                <div class="col-12 d-flex no-block align-items-center">
+                    <h4 class="page-title">Dashboard</h4>
+
+                    <div class="ml-auto text-right">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <a href="#createAccount" class="btn btn-success" data-toggle="modal"><i
+                                        class="fa fa-pencil-square-o"></i> <span>Add New Acount</span></a>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Container fluid  -->
+        <!-- ============================================================== -->
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Basic Datatable</h5>
+                            <div class="table-responsive">
+                                <table id="zero_config" class="table table-striped table-bordered">
+                                    <thead>
+                                    <tr style="text-align: center">
+                                        <th>Id</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Gender</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <!--/*@thymesVar id="users" type=""*/-->
+                                    </tbody>
+                                    <tfoot>
+                                    <tr style="text-align: center">
+                                        <th>id</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Gender</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Container fluid  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- footer -->
+        <!-- ============================================================== -->
+        <footer class="footer text-center">
+            All Rights Reserved by Matrix-admin. Designed and Developed by <a href="https://wrappixel.com">WrapPixel</a>.
+        </footer>
+        <!-- ============================================================== -->
+        <!-- End footer -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Page wrapper  -->
+    <!-- ============================================================== -->
+</div>
+<!-- Modal Create -->
+<div class="modal fade" id="createAccount" data-bs-backdrop="static" data-bs-keyboard="false"
+     tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Sign Up</h5>
+
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="" id="frm-sign-up">
+                    <div class="modal-alert-danger">
+
+                    </div>
+                    <div class="sign-up-element sign-up-name">
+                        <input type="text" id="firstName" name="firstName" placeholder="First name">
+                        <input type="text" id="lastName" name="lastName" placeholder="Last name">
+                    </div>
+                    <div class="sign-up-element sign-up-input">
+                        <input type="email" id="email" name="email" placeholder="Email address or phone number">
+                    </div>
+                    <div class="sign-up-element sign-up-input">
+                        <input type="password" id="password" name="password" placeholder="Password">
+                    </div>
+                    <div class="sign-up-element sign-up-input">
+                        <input type="password" id="repassword" name="repassword" placeholder="Re-Password">
+                    </div>
+                    <div class="sign-up-date-birth">
+                        <label>Date of birth</label>
+                        <div class="date-birth-alert"><a>&#63;</a></div>
+                    </div>
+                    <div class="sign-up-selection">
+                        <div class="select-choice">
+                            <select name="selectDay">
+                                <option value="1">01</option>
+                                <option value="2">02</option>
+                                <option value="3">03</option>
+                                <option value="4">04</option>
+                                <option value="5">05</option>
+                                <option value="6">06</option>
+                                <option value="7">07</option>
+                                <option value="8">08</option>
+                                <option value="9">09</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                                <option value="16">16</option>
+                                <option value="17">17</option>
+                                <option value="18">18</option>
+                                <option value="19">19</option>
+                                <option value="20">20</option>
+                                <option value="21">21</option>
+                                <option value="22">22</option>
+                                <option value="23">23</option>
+                                <option value="24">24</option>
+                                <option value="25">25</option>
+                                <option value="26">26</option>
+                                <option value="27">27</option>
+                                <option value="28">28</option>
+                                <option value="29">29</option>
+                                <option value="30">30</option>
+                                <option value="31">31</option>
+                            </select>
+                        </div>
+                        <div class="select-choice">
+                            <select name="selectMonth">
+                                <option value="01">Jan</option>
+                                <option value="02">Jeb</option>
+                                <option value="03">Mar</option>
+                                <option value="04">Apr</option>
+                                <option value="05">May</option>
+                                <option value="06">Jun</option>
+                                <option value="07">Jul</option>
+                                <option value="08">Aug</option>
+                                <option value="09">Sep</option>
+                                <option value="10">Oct</option>
+                                <option value="11">Nov</option>
+                                <option value="12">Dec</option>
+                            </select>
+                        </div>
+                        <div class="select-choice">
+                            <select name="selectYear">
+                                <option value="2021">2021</option>
+                                <option value="2020">2020</option>
+                                <option value="2019">2019</option>
+                                <option value="2018">2018</option>
+                                <option value="2017">2017</option>
+                                <option value="2016">2016</option>
+                                <option value="2015">2015</option>
+                                <option value="2014">2014</option>
+                                <option value="2013">2013</option>
+                                <option value="2012">2012</option>
+                                <option value="2011">2011</option>
+                                <option value="2010">2010</option>
+                                <option value="2009">2009</option>
+                                <option value="2008">2008</option>
+                                <option value="2007">2007</option>
+                                <option value="2006">2006</option>
+                                <option value="2005">2005</option>
+                                <option value="2004">2004</option>
+                                <option value="2003">2003</option>
+                                <option value="2002">2002</option>
+                                <option value="2001">2001</option>
+                                <option value="2000">2000</option>
+                                <option value="1999">1999</option>
+                                <option value="1998">1998</option>
+                                <option value="1997">1997</option>
+                                <option value="1996">1996</option>
+                                <option value="1995">1995</option>
+                                <option value="1994">1994</option>
+                                <option value="1993">1993</option>
+                                <option value="1992">1992</option>
+                                <option value="1991">1991</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="sign-up-gender">
+                        <label>Gender</label>
+                        <div class="gender-alert"><a>&#63;</a></div>
+                    </div>
+                    <div class="sign-up-gender-choice">
+                        <div class="gender-name">
+                            <label>Female</label>
+                            <input type="radio" value="F" name="gender">
+                        </div>
+                        <div class="gender-name">
+                            <label>Male</label>
+                            <input type="radio" value="M" name="gender">
+                        </div>
+                    </div>
+                </form>
+
+                <div class="sign-up-terms">
+                    <p>
+                        By clicking Sign Up, you agree to our Terms, Data Policy and Cookie Policy.
+                        You may receive SMS notifications from us and can opt out at any time.
+                    </p>
+                </div>
+                <div class="sign-up-button">
+                    <button type="button" id="btnSignUp" class="sign-up-submit">Sign Up</button>
+                </div>
+            </div>
+            <!--                <div class="modal-footer">-->
+            <!--                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>-->
+            <!--                    <button type="button" class="btn btn-primary">Save changes</button>-->
+            <!--                </div>-->
+        </div>
+    </div>
+</div>
+<!-- setLock Modal HTML -->
+<div id="setLock" class="modal fade" data-backdrop="static" data-keyboard="false" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form>
+                <div class="modal-header">
+                    <h4 class="modal-title">Set Lock User</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure?</p>
+                    <p class="text-warning"><small>This action cannot be undone.</small></p>
+                </div>
+                <input type="text" id="id" name="id" style="display: none">
+            </form>
+            <div class="modal-footer">
+                <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                <input type="button" name="setLock" id="btnSetLock" class="btn btn-danger" value="Set Lock">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ============================================================== -->
+<!-- End Wrapper -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- All Jquery -->
+<!-- ============================================================== -->
+<script src="../../assets/libs/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap tether Core JavaScript -->
+<script src="../../assets/libs/popper.js/dist/umd/popper.min.js"></script>
+<script src="../../assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="../../assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+<script src="../../assets/extra-libs/sparkline/sparkline.js"></script>
+<!--Wave Effects -->
+<script src="../../dist/js/waves.js"></script>
+<!--Menu sidebar -->
+<script src="../../dist/js/sidebarmenu.js"></script>
+<!--Custom JavaScript -->
+<script src="../../dist/js/custom.min.js"></script>
+<!--This page JavaScript -->
+<!-- <script src="../../dist/js/pages/dashboards/dashboard1.js"></script> -->
+<!-- Charts js Files -->
+<script src="../../assets/libs/flot/excanvas.js"></script>
+<script src="../../assets/libs/flot/jquery.flot.js"></script>
+<script src="../../assets/libs/flot/jquery.flot.pie.js"></script>
+<script src="../../assets/libs/flot/jquery.flot.time.js"></script>
+<script src="../../assets/libs/flot/jquery.flot.stack.js"></script>
+<script src="../../assets/libs/flot/jquery.flot.crosshair.js"></script>
+<script src="../../assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
+<script src="../../dist/js/pages/chart/chart-page-init.js"></script>
+<script src="/js/jquery.validate.min.js"></script>
+<script src="../../js/admin.js"></script>
+<script>
+
+    $(document).ready(function () {
+        const frmSignUp =  $("#frm-sign-up");
+        const btnSignUp = $("#btnSignUp");
+        const showErrorLogin = $("#frm-sign-up .alert-danger")
+
+        btnSignUp.on("click", function () {
+            frmSignUp.submit();
+        })
+
+        //onclick setLock
+        $("#zero_config tbody").on("click", ".delete", function () {
+            let id = $(this).data('id');
+            $("#id").val(id);
+            $('#setLock').modal('show');
+        });
+
+        $('.sign-up-submit').on("click", function(){
+            $('.modal-alert-danger').removeClass("hide");
+        });
+
+        $('.btn-close').on("click", function(){
+            $('#frm-sign-up')[0].reset();
+            $('.modal-alert-danger').addClass("hide");
+            $('.modal-alert-danger').empty();
+            $('.error').removeClass('error');
+        });
+
+        // ajax sign up
+        createAccount = () => {
+            let account = signUpAccount();
+            $.ajax({
+                type: "POST",
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                url: location.origin +"/api/admin/register",
+                data: JSON.stringify(account)
+            }).done((data) => {
+                alert("success");
+                $("#zero_config tbody").prepend(`
+                <tr id="user_${data.id}" style="text-align: center">
+                    <td>${data.id}</td>
+                    <td>${data.fullName}</td>
+                    <td>${data.email}</td>
+                    <td>${data.gender == "F" ? "Female":"Male"}</td>
+                    <td>${data.status ? "Active":"Locked"}</td>
+                    <td>
+                        <a data-id="${data.id}" class="delete" data-toggle="modal">
+                                <i style="${(data.status)?'':'color: #95a5a6'}"
+                                   class="${(data.status)?'fa fa-unlock-alt':'fa fa-lock'}"
+                                   aria-hidden="true">
+                                </i>
+                        </a>
+                    </td>
+                </tr>
+            `)
+                $("#createAccount").modal("hide");
+                $('#frm-sign-up')[0].reset();
+            }).fail((jqXHR) => {
+                let str = '';
+                if (jqXHR.responseJSON) {
+                    if (jqXHR.responseJSON.message) {
+                        str += `<label class="error">${jqXHR.responseJSON.message}</label>`;
+                    } else {
+                        $.each(jqXHR.responseJSON, function (key, value) {
+                            str += `<label id="${key}-error" class="error" for="${key}">${key + ": " + value}</label>`;
+                            $("#" + key).addClass("error");
+                        });
+                    }
+                }
+                $("#createAccount .modal-alert-danger").removeClass("hide").addClass("show");
+                $("#createAccount .modal-alert-danger").append(str);
+            });
+        }
+        // function sign up
+        signUpAccount = () => {
+            let day = $('select[name=selectDay] option').filter(':selected').val();
+            let month = $('select[name=selectMonth] option').filter(':selected').val();
+            let year = $('select[name=selectYear] option').filter(':selected').val();
+            let dob = day + "/" + month + "/" + year;
+            let account = {
+                "firstName": $("#firstName").val(),
+                "lastName": $("#lastName").val(),
+                "password": $("#password").val(),
+                "repassword": $("#repassword").val(),
+                "dateOfBirth": dob,
+                "email": $("#email").val(),
+                "gender": $("#frm-sign-up input[type='radio']:checked").val()
+            }
+            return account;
+        }
+
+
+        frmSignUp.validate({
+            onkeyup: function (element) {
+                $(element).valid()
+            },
+            onclick: false,
+            onfocusout: false,
+            rules: {
+                firstName: {
+                    required: true,
+                    minlength: 5,
+                    maxlength: 50
+                },
+                lastName: {
+                    required: true,
+                    minlength: 5,
+                    maxlength: 50
+                },
+                email: {
+                    required: true,
+                    minlength: 5,
+                    maxlength: 50
+                },
+                password: {
+                    required: true,
+                    minlength: 5,
+                    maxlength: 50
+                },
+                repassword: {
+                    required: true,
+                    minlength: 5,
+                    maxlength: 50
+                }
+            },
+            errorLabelContainer: "#frmLogin .modal-alert-danger",
+            errorPlacement: function (error, element) {
+                error.appendTo("#frm-sign-up .modal-alert-danger");
+            },
+            showErrors: function (errorMap, errorList) {
+                if (this.numberOfInvalids() > 0) {
+                    showErrorLogin.removeClass("hide").addClass("show");
+                } else {
+                    showErrorLogin.removeClass("show").addClass("hide").empty();
+                    $("#frmLogin input.error").removeClass("error");
+                }
+                this.defaultShowErrors();
+            },
+            messages: {
+                firstName: {
+                    required: "Vui lòng nhập đầy đủ tên",
+                    minlength: "Họ tên tối thiểu 5 ký tự",
+                    maxlength: "Họ tên tối đa 50 ký tự"
+                },
+                lastName: {
+                    required: "Vui lòng nhập đầy đủ tên",
+                    minlength: "Họ tên tối thiểu 5 ký tự",
+                    maxlength: "Họ tên tối đa 50 ký tự"
+                },
+                email: {
+                    required: "Vui lòng nhập đầy đủ email",
+                    minlength: "Họ tên tối thiểu 5 ký tự",
+                    maxlength: "Họ tên tối đa 50 ký tự"
+                },
+                password: {
+                    required: "Vui lòng nhập đầy đủ password",
+                    minlength: "Họ tên tối thiểu 5 ký tự",
+                    maxlength: "Họ tên tối đa 50 ký tự"
+                },
+                repassword: {
+                    required: "VubtnSignUpi lòng nhập đầy đủ re-password",
+                    minlength: "Họ tên tối thiểu 5 ký tự",
+                    maxlength: "Họ tên tối đa 50 ký tự"
+                }
+            },submitHandler: function () {
+                createAccount();
+            }
+        });
+        // ajax setLock
+        function setLock() {
+            let id = $("#id").val();
+            $.ajax({
+                type: "POST",
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                url: location.origin+"/api/admin/setLock/" + id,
+            }).done((data) => {
+                $("#user_"+data.id).replaceWith(`
+                    <tr id="user_${data.id}" style="text-align: center">
+                        <td>${data.id}</td>
+                        <td>${data.fullName}</td>
+                        <td>${data.email}</td>
+                        <td>${data.gender == "F" ? "Female":"Male"}</td>
+                        <td>${data.status ? "Active":"Locked"}</td>
+                        <td>
+                            <a data-id="${data.id}" class="delete" data-toggle="modal">
+                                    <i style="${(data.status)?'':'color: #95a5a6'}"
+                                       class="${(data.status)?'fa fa-unlock-alt':'fa fa-lock'}"
+                                       aria-hidden="true">
+                                    </i>
+                            </a>
+                        </td>
+                    </tr>
+                `)
+                $("#setLock").modal("hide");
+            }).fail((jqXHR) => {
+                App.showAlert("error", "Something is wrong !");
+            });
+        }
+
+        //onclick setLock account
+        $("#btnSetLock").on("click", function () {
+            setLock();
+        })
+
+
+    })
+</script>
+</body>
+</html>

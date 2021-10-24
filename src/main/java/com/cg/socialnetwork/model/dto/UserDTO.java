@@ -27,39 +27,16 @@ public class UserDTO {
     private int city;
     private String image;
     private String background;
+    private String fullName;
 
-    public UserDTO(String firstName, String lastName, String password, String repassword, String email, int country, int city, String image, String background) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.password = password;
-        this.repassword = repassword;
-        this.email = email;
-        this.country = country;
-        this.city = city;
-        this.image = image;
-        this.background = background;
-    }
-
-    public UserDTO(Long id, String firstName, String lastName, String password, String email, int country, int city, String image, String background) {
+    public UserDTO(Long id, String firstName, String lastName , String email, Gender gender, Boolean status) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.password = password;
-        this.email = email;
-        this.country = country;
-        this.city = city;
-        this.image = image;
-        this.background = background;
-    }
-
-    public UserDTO(String firstName, String lastName, String password, String repassword, String dateOfBirth, String email, Gender gender) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.password = password;
-        this.repassword = repassword;
-        this.dateOfBirth = dateOfBirth;
         this.email = email;
         this.gender = gender;
+        this.status = status;
+        this.fullName = firstName + " " + lastName;
     }
 
     public UserDTO(String password, String email) {

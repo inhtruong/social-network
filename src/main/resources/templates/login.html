@@ -263,6 +263,11 @@
         })
 
 
+        function createUser() {
+
+        }
+
+
         frmSignUp.validate({
             onkeyup: function (element) {
                 $(element).valid()
@@ -369,14 +374,13 @@
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 },
-                url: location.origin +"/api/login/register",
+                url: location.origin +"/api/admin/register",
                 data: JSON.stringify(account)
             }).done((data) => {
                 alert("success");
                 $("#createAccount").modal("hide");
                 $('#frm-sign-up')[0].reset();
-            })
-                .fail((jqXHR) => {
+            }).fail((jqXHR) => {
                     let str = '';
                     if (jqXHR.responseJSON) {
                         if (jqXHR.responseJSON.message) {
