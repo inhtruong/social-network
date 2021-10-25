@@ -1,13 +1,18 @@
-package com.cg.socialnetwork.controller;
+package com.cg.socialnetwork.controller.api;
 
+import com.cg.socialnetwork.exception.DataInputException;
+import com.cg.socialnetwork.exception.EmailExistsException;
 import com.cg.socialnetwork.model.JwtResponse;
+import com.cg.socialnetwork.model.Role;
 import com.cg.socialnetwork.model.User;
 import com.cg.socialnetwork.model.dto.UserDTO;
 import com.cg.socialnetwork.service.jwt.JwtService;
 import com.cg.socialnetwork.service.role.IRoleService;
 import com.cg.socialnetwork.service.user.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -15,16 +20,18 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import java.util.Optional;
 
-@Controller
-@RequestMapping("/login")
-public class LoginController {
+@RestController
+@RequestMapping("/api/auth")
+public class AuthAPI {
     @Autowired
     private AuthenticationManager authenticationManager;
 
@@ -37,30 +44,32 @@ public class LoginController {
     @Autowired
     private IRoleService roleService;
 
-    @GetMapping
-    public ModelAndView getLogin(){
-        return new ModelAndView("login","user", new UserDTO());
+    @PostMapping("/register")
+    public ResponseEntity<?> register(@Valid @RequestBody UserDTO userDTO) {
+
+        Optional<UserDTO> optUser = Optional.ofNullable(userService.findUserByEmail(userDTO.getEmail()));
+
+        if (optUser.isPresent()) {
+            throw new EmailExistsException("Email already exists");
+        }
+
+        Optional<Role> optRole = roleService.findById(userDTO.getRole().getId());
+
+        if (!optRole.isPresent()) {
+            throw new DataInputException("Invalid account role");
+        }
+
+        try {
+            userService.save(userDTO.toUser());
+
+            return new ResponseEntity<>(HttpStatus.CREATED);
+
+        } catch (DataIntegrityViolationException e) {
+            throw new DataInputException("Account information is not valid, please check the information again");
+        }
     }
 
-//    @PostMapping
-//    public ModelAndView login(@ModelAttribute("user") UserDTO userDTO, HttpSession session){
-//        ModelAndView modelAndView = new ModelAndView("login");
-//        Optional<User> userOptional = userService.findByEmailAndPassword(userDTO.getEmail(), userDTO.getPassword());
-//        System.out.println(userOptional.get());
-//        if (userOptional.isPresent()){
-//            if(userOptional.get().getStatus()){
-//                session.setAttribute("account", userOptional.get());
-//                return new ModelAndView("redirect:/social");
-//            }else{
-//                modelAndView.addObject("mess","This user is Locked");
-//            }
-//        }{
-//            modelAndView.addObject("mess","Email or password is wrong !");
-//        }
-//        return modelAndView;
-//    }
-
-    @PostMapping
+    @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody User user) {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword()));
@@ -96,12 +105,5 @@ public class LoginController {
                 .header(HttpHeaders.SET_COOKIE, springCookie.toString())
                 .body(jwtResponse);
 
-
     }
-
-//    @PostMapping("/logout")
-//    public ModelAndView logout(HttpSession session){
-//        session.removeAttribute("account");
-//        return new ModelAndView("redirect:/login");
-//    }
 }

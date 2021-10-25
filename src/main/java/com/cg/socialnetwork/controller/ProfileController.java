@@ -1,7 +1,9 @@
+
 package com.cg.socialnetwork.controller;
 
 import com.cg.socialnetwork.model.User;
 import com.cg.socialnetwork.model.dto.UserDTO;
+import com.cg.socialnetwork.service.user.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +17,7 @@ import java.util.Optional;
 @RequestMapping("/profile/{id}")
 public class ProfileController {
     @Autowired
-    private com.cg.socialnetwork.service.user.IUserService userService;
+    private IUserService userService;
 
     @GetMapping
     public ModelAndView showUser(@PathVariable long id){
@@ -31,3 +33,4 @@ public class ProfileController {
             return modelAndView;
     }
 }
+
