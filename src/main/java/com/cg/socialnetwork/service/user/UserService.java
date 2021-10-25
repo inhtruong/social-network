@@ -44,8 +44,8 @@ public class UserService implements IUserService {
         userRepository.deleteById(id);
     }
 
-
     @Override
+
     public Optional<User> findByEmailAndPassword(String email, String password) {
         return userRepository.findByEmailAndPassword(email, password);
     }
@@ -56,6 +56,7 @@ public class UserService implements IUserService {
     }
 
     @Override
+
     public UserDTO findUserByEmail(String email) {
         return userRepository.findUserByEmail(email);
     }
@@ -67,8 +68,15 @@ public class UserService implements IUserService {
             throw new UsernameNotFoundException(email);
         }
         return UserPrinciple.build(userOptional.get());
-//        return (UserDetails) userOptional.get();
     }
 
+    public Iterable<UserDTO> userList() {
+        return userRepository.userList();
+    }
 
+    @Override
+    public Optional<UserDTO> findByIdDTO(Long id) {
+        return userRepository.findByIdDTO(id);
+    }
 }
+

@@ -1,5 +1,6 @@
 package com.cg.socialnetwork.model;
 
+import com.cg.socialnetwork.model.dto.UserDTO;
 import com.cg.socialnetwork.model.enumModel.Gender;
 import com.cg.socialnetwork.model.enumModel.MediaType;
 import lombok.AllArgsConstructor;
@@ -86,6 +87,7 @@ public class User extends BaseEntity {
         this.status = status;
     }
 
+
     public User(long id, String email) {
         this.id = id;
         this.email = email;
@@ -98,5 +100,10 @@ public class User extends BaseEntity {
                 ", username='" + email + '\'' +
                 ", password='" + password + '\'' +
                 '}';
+    }
+
+    public UserDTO toUserDTOAdmin(){
+        return new UserDTO(id, firstName, lastName, email, gender, status);
+
     }
 }
