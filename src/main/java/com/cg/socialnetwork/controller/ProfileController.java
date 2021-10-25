@@ -1,6 +1,7 @@
 package com.cg.socialnetwork.controller;
 
 import com.cg.socialnetwork.model.User;
+import com.cg.socialnetwork.model.dto.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,12 +20,14 @@ public class ProfileController {
     @GetMapping
     public ModelAndView showUser(@PathVariable long id){
 
-        Optional<User> newUser = userService.findById(id);
-        if (!newUser.isPresent()){
+        Optional<User> user = userService.findById(id);
+        Optional<UserDTO> userDTO = userService.findByIdDTO(id);
+        if (!user.isPresent()){
             return new ModelAndView("/error");
         }
         ModelAndView modelAndView = new ModelAndView("/profile");
-        modelAndView.addObject("user",newUser);
+        modelAndView.addObject("user",user);
+        modelAndView.addObject("userDTO", userDTO);
         return modelAndView;
     }
 }

@@ -44,6 +44,12 @@ public class UserDTO {
         this.email = email;
     }
 
+    public UserDTO(Long id, String image, String background) {
+        this.id = id;
+        this.image = image;
+        this.background = background;
+    }
+
     public Boolean checkEqual(){
         return password.equals(repassword);
     }
@@ -52,5 +58,6 @@ public class UserDTO {
         Date date = new SimpleDateFormat("dd/MM/yyyy").parse(dateOfBirth);
         return new User(email, password, firstName, lastName, date, gender, status);
     }
+
 
 }

@@ -50,4 +50,9 @@ public class UserService implements com.cg.socialnetwork.service.user.IUserServi
     public Iterable<UserDTO> userList() {
         return userRepository.userList();
     }
+
+    @Override
+    public Optional<UserDTO> findByIdDTO(Long id) {
+        return userRepository.findByIdDTO(id);
+    }
 }

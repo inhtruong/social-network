@@ -5,6 +5,7 @@ import com.cg.socialnetwork.model.User;
 import com.cg.socialnetwork.model.dto.UserDTO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
@@ -16,8 +17,10 @@ public interface UserRepository extends JpaRepository<User, Long> {
             "c.lastName, c.email, c.gender, c.status) from User c")
     Iterable<UserDTO> userList();
 
-//    @Query(value = "select new com.cg.socialnetwork.model.dto.UserDTO (c.password, c.email) from User c")
-//    Iterable<UserDTO> userList();
+    @Query(value = "select new com.cg.socialnetwork.model.dto.UserDTO " +
+            "(c.id, c.avatar.url, c.background.url) " +
+            "from User c WHERE c.id = :id")
+    Optional<UserDTO> findByIdDTO(@Param("id") Long id);
 
     Optional<User> findByEmailAndPassword(String email, String password);
 

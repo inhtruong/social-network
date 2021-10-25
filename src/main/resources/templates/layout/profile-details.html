@@ -3,7 +3,7 @@
         <div class="profile-details">
             <div class="pd-left">
                 <div class="pd-row">
-                    <img src="/images/profile.png" alt="" class="pd-image">
+                    <img th:src="${userDTO.get().image}" alt="" class="pd-image">
                     <div>
                         <span th:text="${user.get().firstName}"></span>
                         <p>120friends - 20 mutual</p>
