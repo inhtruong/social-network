@@ -15,7 +15,10 @@
     <!--------------- Heading End --------------->
 
     <div class="profile-container">
-        <img th:src="${userDTO.get().background}" alt="" class="cover-img">
+        <div class="cover-container">
+            <img th:src="${userDTO.get().background}" alt="" class="cover-img">
+        </div>
+
 
         <th:block th:replace = "layout/profile-details :: profile">
         </th:block>
@@ -71,7 +74,7 @@
                 </div>
             </div>
             <div class="post-col">
-                <th:block th:replace="layout/write-post-container :: write-post-container">
+                <th:block th:replace="layout/write-post-container :: profile">
                 </th:block>
 
                 <th:block th:replace="layout/new-feed :: new-feed">

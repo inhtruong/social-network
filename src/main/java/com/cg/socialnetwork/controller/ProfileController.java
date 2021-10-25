@@ -22,12 +22,12 @@ public class ProfileController {
 
         Optional<User> user = userService.findById(id);
         Optional<UserDTO> userDTO = userService.findByIdDTO(id);
-        if (!user.isPresent()){
-            return new ModelAndView("/error");
-        }
-        ModelAndView modelAndView = new ModelAndView("/profile");
-        modelAndView.addObject("user",user);
-        modelAndView.addObject("userDTO", userDTO);
-        return modelAndView;
+            if (!user.isPresent()){
+                return new ModelAndView("/error");
+            }
+            ModelAndView modelAndView = new ModelAndView("/profile");
+            modelAndView.addObject("user",user);
+            modelAndView.addObject("userDTO", userDTO);
+            return modelAndView;
     }
 }
