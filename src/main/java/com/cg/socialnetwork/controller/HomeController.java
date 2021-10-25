@@ -14,5 +14,10 @@ public class HomeController {
     public ModelAndView redirected(){
         return new ModelAndView("redirect:/login");
     }
+
+    @GetMapping("/demo")
+    public ModelAndView getDemo(){
+        return new ModelAndView("demo");
+    }
 }
 

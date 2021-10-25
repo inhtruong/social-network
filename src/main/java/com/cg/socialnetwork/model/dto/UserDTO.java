@@ -1,10 +1,12 @@
 package com.cg.socialnetwork.model.dto;
 
+
 import com.cg.socialnetwork.model.User;
 import com.cg.socialnetwork.model.enumModel.Gender;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -13,6 +15,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@Accessors(chain = true)
 public class UserDTO {
     private Long id;
     private String firstName;
@@ -27,6 +30,7 @@ public class UserDTO {
     private int city;
     private String image;
     private String background;
+    private RoleDTO role;
 
     public UserDTO(String firstName, String lastName, String password, String repassword, String email, int country, int city, String image, String background) {
         this.firstName = firstName;
@@ -52,7 +56,7 @@ public class UserDTO {
         this.background = background;
     }
 
-    public UserDTO(String firstName, String lastName, String password, String repassword, String dateOfBirth, String email, Gender gender) {
+    public UserDTO(String firstName, String lastName, String password, String repassword, String dateOfBirth, String email, Gender gender, RoleDTO role) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
@@ -60,11 +64,17 @@ public class UserDTO {
         this.dateOfBirth = dateOfBirth;
         this.email = email;
         this.gender = gender;
+        this.role = role;
     }
 
-    public UserDTO(String password, String email) {
-        this.password = password;
+    public UserDTO(Long id, String email) {
+        this.id = id;
         this.email = email;
+    }
+
+    public UserDTO(String email, String password) {
+        this.email = email;
+        this.password = password;
     }
 
     public Boolean checkEqual(){
@@ -76,4 +86,11 @@ public class UserDTO {
         return new User(email, password, firstName, lastName, date, gender, status);
     }
 
+    public User toUser() {
+        return new User()
+                .setId(id)
+                .setEmail(email)
+                .setPassword(password)
+                .setRole(role.toRole());
+    }
 }

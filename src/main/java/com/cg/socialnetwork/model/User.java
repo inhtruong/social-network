@@ -5,6 +5,7 @@ import com.cg.socialnetwork.model.enumModel.MediaType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
 import org.springframework.stereotype.Controller;
 
 import javax.persistence.*;
@@ -18,14 +19,16 @@ import java.util.List;
 @AllArgsConstructor
 @Data
 @Table(name = "users")
+@Accessors(chain = true)
 public class User extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @Column(unique = true,nullable = false)
     private String email;
 
-    @NotBlank
+    @Column(nullable = false)
     private String password;
 
     @NotBlank
@@ -52,21 +55,14 @@ public class User extends BaseEntity {
     @JoinColumn(name = "image_id",referencedColumnName = "id")
     private Media avatar;
 
-//    @ManyToOne
-//    @JoinColumn(name = "role_id",referencedColumnName = "id")
-//    private Role role;
+    @ManyToOne
+    @JoinColumn(name = "role_id")
+    private Role role;
 
     @ManyToOne
     @JoinColumn(name = "background_id",referencedColumnName = "id")
     private Media background;
 
-//    private boolean status = true;
-//    @PrePersist
-//    public void setAvatar(){
-//        if(avatar == null){
-//            avatar = new Media(1);
-//        }
-//    }
 
     public User(long id, String email, @NotBlank String password, @NotBlank String firstName,
                 @NotBlank String lastName, Gender gender, int city, int country) {
@@ -90,5 +86,17 @@ public class User extends BaseEntity {
         this.status = status;
     }
 
+    public User(long id, String email) {
+        this.id = id;
+        this.email = email;
+    }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + email + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
 }

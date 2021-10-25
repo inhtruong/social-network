@@ -1,18 +1,13 @@
 package com.cg.socialnetwork.controller.api;
 
-
 import com.cg.socialnetwork.exception.DataInputException;
 import com.cg.socialnetwork.exception.EmailExistsException;
 import com.cg.socialnetwork.model.JwtResponse;
-import com.cg.socialnetwork.model.Media;
 import com.cg.socialnetwork.model.Role;
 import com.cg.socialnetwork.model.User;
-
-import com.cg.socialnetwork.model.dto.RoleDTO;
 import com.cg.socialnetwork.model.dto.UserDTO;
-import com.cg.socialnetwork.model.enumModel.Gender;
 import com.cg.socialnetwork.service.jwt.JwtService;
-import com.cg.socialnetwork.service.role.RoleService;
+import com.cg.socialnetwork.service.role.IRoleService;
 import com.cg.socialnetwork.service.user.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -25,65 +20,65 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.text.ParseException;
+import javax.validation.Valid;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/login")
-public class LoginAPI {
+@RequestMapping("/api/auth")
+public class AuthAPI {
     @Autowired
     private AuthenticationManager authenticationManager;
+
+    @Autowired
+    private JwtService jwtService;
 
     @Autowired
     private IUserService userService;
 
     @Autowired
-    private RoleService roleService;
-
-    @Autowired
-    private JwtService jwtService;
+    private IRoleService roleService;
 
     @PostMapping("/register")
-    public ResponseEntity<?> register(@RequestBody UserDTO userDTO) throws ParseException {
-        Optional<User> userOptional = userService.findByEmail(userDTO.getEmail());
-        if (userOptional.isPresent()){
-            throw new EmailExistsException("Email is exist!");
-        }else{
-            if(userDTO.checkEqual()){
-                User user = userDTO.toUserSignUp();
-                if (userDTO.getGender() == Gender.M) {
-                    user.setAvatar(new Media(2));
-                }
-                if (userDTO.getGender() == Gender.F) {
-                    user.setAvatar(new Media(3));
-                }
-                user.setBackground(new Media(1));
-                user.setRole(new Role(new Long(1) ));
+    public ResponseEntity<?> register(@Valid @RequestBody UserDTO userDTO) {
 
-                userService.save(user);
-                return new ResponseEntity<>(HttpStatus.CREATED);
-            }else{
-                throw new DataInputException("reptype password is not equal");
-            }
+        Optional<UserDTO> optUser = Optional.ofNullable(userService.findUserByEmail(userDTO.getEmail()));
+
+        if (optUser.isPresent()) {
+            throw new EmailExistsException("Email already exists");
+        }
+
+        Optional<Role> optRole = roleService.findById(userDTO.getRole().getId());
+
+        if (!optRole.isPresent()) {
+            throw new DataInputException("Invalid account role");
+        }
+
+        try {
+            userService.save(userDTO.toUser());
+
+            return new ResponseEntity<>(HttpStatus.CREATED);
+
+        } catch (DataIntegrityViolationException e) {
+            throw new DataInputException("Account information is not valid, please check the information again");
         }
     }
 
-    @PostMapping
-    public ResponseEntity<?> login(@RequestBody UserDTO userDTO) {
-        System.out.println(userDTO);
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody User user) {
         Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(userDTO.getEmail(), userDTO.getPassword()));
+                new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword()));
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         String jwt = jwtService.generateTokenLogin(authentication);
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-        User currentUser = userService.findByEmail(userDTO.getEmail()).get();
+        User currentUser = userService.findByEmail(user.getEmail()).get();
 
         JwtResponse jwtResponse = new JwtResponse(
                 jwt,
@@ -110,32 +105,5 @@ public class LoginAPI {
                 .header(HttpHeaders.SET_COOKIE, springCookie.toString())
                 .body(jwtResponse);
 
-
     }
-
-//    @PostMapping("/register")
-//    public ResponseEntity<?> register(@RequestBody UserDTO userDTO) throws ParseException {
-//        Optional<UserDTO> optUser = Optional.ofNullable(userService.findUserByEmail(userDTO.getEmail()));
-//
-//        if (optUser.isPresent()) {
-//            throw new EmailExistsException("Email already exists");
-//        }
-//
-//        Optional<Role> optRole = roleService.findById(userDTO.getRole().getId());
-//
-//        if (!optRole.isPresent()) {
-//            throw new DataInputException("Invalid account role");
-//        }
-//
-//        try {
-//            userService.save(userDTO.toUser());
-//
-//            return new ResponseEntity<>(HttpStatus.CREATED);
-//
-//        } catch (DataIntegrityViolationException e) {
-//            throw new DataInputException("Account information is not valid, please check the information again");
-//        }
-//    }
-
-
 }
