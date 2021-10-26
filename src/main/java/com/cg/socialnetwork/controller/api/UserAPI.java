@@ -57,6 +57,17 @@ public class UserAPI {
         }
     }
 
+    @GetMapping("/{email}")
+    public ResponseEntity<User> findByEmail(@PathVariable String email) {
+        Optional<User> user = userService.findByEmail(email);
+
+        if (!user.isPresent()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }else {
+            return new ResponseEntity<>(user.get(),HttpStatus.OK);
+        }
+    }
+
     @PostMapping("/suspend/{id}")
     public ResponseEntity<?> doSuspend(@PathVariable long id) {
         Optional<User> user = userService.findById(id);
@@ -74,6 +85,8 @@ public class UserAPI {
             throw new DataInputException("Invalid customer information");
         }
     }
+
+
     //    @PostMapping
 //    public ResponseEntity<?> createCustomer(@Validated @RequestBody  userDTO, BindingResult bindingResult) {
 //        if (bindingResult.hasErrors())

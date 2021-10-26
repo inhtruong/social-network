@@ -382,10 +382,10 @@
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 },
-                url: location.origin +"/api/login",
+                url: location.origin +"/api/admin",
                 data: JSON.stringify(account)
             }).done((data) => {
-                // $.notify("Logged in successfully !", "success");
+                console.log(data);
                 setTimeout(function () {
                     window.location.href = "/social";
                 }, 1000);

@@ -20,6 +20,8 @@ let page = {
     }
 }
 
+page.element.logout = $(".settings-links a.logout");
+
 showSettings.onclick = function() {
     settings.classList.toggle("active");
 }
@@ -52,6 +54,12 @@ postContent.oninput = () => {
         postBtn.classList.remove("active");
     }
 };
+page.element.logout.on("click", function () {
+    setTimeout(function () {
+        $.removeCookie("JWT");
+    }, 1000);
+
+});
 
 page.command.postStatus = () => {
     $(".main-content .new-feed").prepend(`

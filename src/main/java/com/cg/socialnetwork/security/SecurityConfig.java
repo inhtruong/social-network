@@ -61,7 +61,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.httpBasic().authenticationEntryPoint(restServicesEntryPoint());
 
         http.authorizeRequests()
-                .antMatchers("/", "/api/login/register", "/api/login", "/login", "/logout").permitAll()
+                .antMatchers("/", "/api/admin/register", "/api/admin", "/login", "/logout").permitAll()
+                .antMatchers("/admin/**").hasAnyAuthority("ADMIN")
+//                .antMatchers("/profile/{id}/**").access("hasRole('USER')")
+                .antMatchers("/profile/{id}/**").hasAnyAuthority("USER")
                 .antMatchers("/resources/**", "/static/**",
                         "/css/**",
                         "/js/**",
@@ -79,11 +82,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .loginProcessingUrl("/")
+                .loginProcessingUrl("/login")
                 .loginPage("/login")
                 .usernameParameter("email")
                 .passwordParameter("password")
-                .defaultSuccessUrl("/social")
+                .defaultSuccessUrl("/")
                 .and()
                 .logout()
                 .logoutUrl("/logout")
