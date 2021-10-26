@@ -114,9 +114,7 @@ public class AdminAPI {
 //                .domain("bank-transaction.azurewebsites.net")
                 .domain("localhost")
                 .build();
-
         System.out.println(jwtResponse);
-
         return ResponseEntity
                 .ok()
                 .header(HttpHeaders.SET_COOKIE, springCookie.toString())
@@ -125,29 +123,6 @@ public class AdminAPI {
 
     }
 
-//    @PostMapping("/register")
-//    public ResponseEntity<?> register(@RequestBody UserDTO userDTO) throws ParseException {
-//        Optional<UserDTO> optUser = Optional.ofNullable(userService.findUserByEmail(userDTO.getEmail()));
-//
-//        if (optUser.isPresent()) {
-//            throw new EmailExistsException("Email already exists");
-//        }
-//
-//        Optional<Role> optRole = roleService.findById(userDTO.getRole().getId());
-//
-//        if (!optRole.isPresent()) {
-//            throw new DataInputException("Invalid account role");
-//        }
-//
-//        try {
-//            userService.save(userDTO.toUser());
-//
-//            return new ResponseEntity<>(HttpStatus.CREATED);
-//
-//        } catch (DataIntegrityViolationException e) {
-//            throw new DataInputException("Account information is not valid, please check the information again");
-//        }
-//    }
 
     @PostMapping("/setLock/{id}")
     public ResponseEntity<?> setLock(@PathVariable Long id) {

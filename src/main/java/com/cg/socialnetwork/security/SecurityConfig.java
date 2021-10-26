@@ -4,6 +4,7 @@ import com.cg.socialnetwork.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -64,7 +65,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/", "/api/admin/register", "/api/admin", "/login", "/logout").permitAll()
                 .antMatchers("/admin/**").hasAnyAuthority("ADMIN")
 //                .antMatchers("/profile/{id}/**").access("hasRole('USER')")
-                .antMatchers("/profile/{id}/**").hasAnyAuthority("USER")
+                .antMatchers(HttpMethod.GET,"/profile/{id}/**").hasRole("USER")
                 .antMatchers("/resources/**", "/static/**",
                         "/css/**",
                         "/js/**",

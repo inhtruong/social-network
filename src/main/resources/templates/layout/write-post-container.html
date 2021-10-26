@@ -2,10 +2,10 @@
     <th:block th:fragment = "index" >
         <div class="write-post-container">
             <div class="user-profile">
-                <img src="/images/profile-pic.png" alt="">
+                <img th:src="${user.avatar.url}" alt="">
                 <div>
 <!--                    <p  th:text="${user.get().firstName}"></p>-->
-                    <p>John</p>
+                    <p><span th:text="${user.firstName}"></span> <span th:text="${user.lastName}"></span></p>
                     <small>Public <i class="fas fa-caret-down"></i></small>
                 </div>
             </div>

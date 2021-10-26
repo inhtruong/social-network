@@ -374,7 +374,7 @@
                 email: $('#emailLogin').val(),
                 password: $('#passwordLogin').val()
             }
-            console.log(account)
+            // console.log(account)
             //
             $.ajax({
                 type: "POST",
@@ -385,7 +385,7 @@
                 url: location.origin +"/api/admin",
                 data: JSON.stringify(account)
             }).done((data) => {
-                console.log(data);
+                // console.log(data);
                 setTimeout(function () {
                     window.location.href = "/social";
                 }, 1000);
