@@ -25,7 +25,7 @@
 
             <div class="settings-menu-inner">
                 <div class="user-profile">
-                    <img src="/images/profile-pic.png" alt="">
+                    <img th:src="${user.avatar.url}" alt="">
                     <div>
                         <p th:text="${user.firstName}"></p>
                         <a th:href="@{/profile/__${user.id}__}">See your profile</a>
