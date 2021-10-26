@@ -2,10 +2,11 @@
     <th:block th:fragment = "index" >
         <div class="write-post-container">
             <div class="user-profile">
-                <img th:src="${user.avatar.url}" alt="">
+                <a href="https://anhdep123.com/wp-content/uploads/2021/05/avatar-trang-dep.jpg"><img th:src="${user.avatar.url}" alt="" style="width: 30px; height: 30px; border-radius: 50%"></a>
                 <div>
 <!--                    <p  th:text="${user.get().firstName}"></p>-->
-                    <p><span th:text="${user.firstName}"></span> <span th:text="${user.lastName}"></span></p>
+                    <p>
+                        <span th:text="${user.firstName}"></span> <span th:text="${user.lastName}"></span></p>
                     <small>Public <i class="fas fa-caret-down"></i></small>
                 </div>
             </div>
