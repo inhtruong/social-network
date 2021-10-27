@@ -1,7 +1,7 @@
 package com.cg.socialnetwork.security;
 
+import com.cg.socialnetwork.service.User.IUserService;
 import com.cg.socialnetwork.service.jwt.JwtService;
-import com.cg.socialnetwork.service.user.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;

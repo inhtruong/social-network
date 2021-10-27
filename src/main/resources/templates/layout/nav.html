@@ -10,13 +10,16 @@
             </ul>
         </div>
         <div class="nav-right">
-            <div class="search-box">
-                <img src="/images/search.png" alt="">
-                <input type="text" placeholder="Search">
-            </div>
-            <div class="nav-user-icon online">
-                <img src="/images/profile-pic.png" alt="">
-            </div>
+            <form action="/search">
+                <div class="search-box">
+                    <img src="/images/search.png" alt="">
+                    <input th:value="${keyword}" id="keyword" name="keyword" type="text" placeholder="Search">
+                </div>
+                <div class="nav-user-icon online">
+                    <img src="/images/profile-pic.png" alt="">
+                    <input type="submit">
+                </div>
+            </form>
         </div>
         <div class="settings-menu">
             <div class="dark-btn">

@@ -3,7 +3,7 @@ package com.cg.socialnetwork.controller;
 import com.cg.socialnetwork.model.JwtResponse;
 import com.cg.socialnetwork.model.User;
 import com.cg.socialnetwork.model.dto.UserDTO;
-import com.cg.socialnetwork.service.user.IUserService;
+import com.cg.socialnetwork.service.User.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;

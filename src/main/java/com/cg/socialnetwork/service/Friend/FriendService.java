@@ -1,4 +1,4 @@
-package com.cg.socialnetwork.service.friend;//package com.cg.service.Friend;
+package com.cg.socialnetwork.service.Friend;//package com.cg.service.Friend;
 
 
 import com.cg.socialnetwork.model.Friend;
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class FriendService implements IFriendService{
+public class FriendService implements com.cg.socialnetwork.service.friend.IFriendService {
 
     @Autowired
     private FriendRepository friendRepository;

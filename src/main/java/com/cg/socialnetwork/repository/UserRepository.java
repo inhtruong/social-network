@@ -2,6 +2,7 @@ package com.cg.socialnetwork.repository;//package com.cg.repository;
 
 
 import com.cg.socialnetwork.model.User;
+import com.cg.socialnetwork.model.dto.SearchDTO;
 import com.cg.socialnetwork.model.dto.UserDTO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -26,6 +27,13 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     Optional<User> findByEmail(String email);
 
+
+    @Query("SELECT new com.cg.socialnetwork.model.dto.SearchDTO(c.id, c.fullName, c.avatar.url) FROM User c WHERE c.fullName LIKE %:keyWord%")
+    Iterable<SearchDTO> findByNameContaining(@Param("keyWord") String keyword);
+
+    Iterable<User> findAllByFullNameContaining(String keyword);
+
     @Query("SELECT NEW com.cg.socialnetwork.model.dto.UserDTO (u.id, u.email) FROM User u WHERE u.email = ?1")
     UserDTO findUserByEmail(String email);
+
 }

@@ -1,6 +1,6 @@
 package com.cg.socialnetwork.security;
 
-import com.cg.socialnetwork.service.user.UserService;
+import com.cg.socialnetwork.service.User.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

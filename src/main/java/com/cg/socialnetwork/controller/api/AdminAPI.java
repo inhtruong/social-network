@@ -2,6 +2,7 @@ package com.cg.socialnetwork.controller.api;
 
 import com.cg.socialnetwork.exception.DataInputException;
 import com.cg.socialnetwork.exception.EmailExistsException;
+
 import com.cg.socialnetwork.model.JwtResponse;
 import com.cg.socialnetwork.model.Media;
 import com.cg.socialnetwork.model.Role;
@@ -9,9 +10,14 @@ import com.cg.socialnetwork.model.User;
 import com.cg.socialnetwork.model.dto.UserDTO;
 
 import com.cg.socialnetwork.model.enumModel.Gender;
+
+import com.cg.socialnetwork.service.Avatar.AvatarService;
+import com.cg.socialnetwork.service.Avatar.IAvatarService;
+import com.cg.socialnetwork.service.Background.IBackgroundService;
+import com.cg.socialnetwork.service.User.IUserService;
 import com.cg.socialnetwork.service.jwt.JwtService;
 import com.cg.socialnetwork.service.role.RoleService;
-import com.cg.socialnetwork.service.user.IUserService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpHeaders;
@@ -41,7 +47,13 @@ public class AdminAPI {
 
 
     @Autowired
-    private com.cg.socialnetwork.service.user.IUserService userService;
+    private IUserService userService;
+
+    @Autowired
+    private IAvatarService avatarService;
+
+    @Autowired
+    private IBackgroundService backgroundService;
 
     @GetMapping("/userList")
     public ResponseEntity<?> userList(){
@@ -67,14 +79,13 @@ public class AdminAPI {
             if(userDTO.checkEqual()){
                 User user = userDTO.toUserSignUp();
                 if (userDTO.getGender() == Gender.M) {
-                    user.setAvatar(new Media(2));
+                    user.setAvatar(avatarService.findById(1).get());
                 }
                 if (userDTO.getGender() == Gender.F) {
-                    user.setAvatar(new Media(3));
+                    user.setAvatar(avatarService.findById(2).get());
                 }
-                user.setBackground(new Media(1));
+                user.setBackground(backgroundService.findById(1).get());
                 user.setRole(new Role(new Long(1) ));
-
                 userService.save(user);
 
                 return new ResponseEntity<>(HttpStatus.CREATED);
