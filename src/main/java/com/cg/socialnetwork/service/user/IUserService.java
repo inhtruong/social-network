@@ -1,9 +1,11 @@
-package com.cg.socialnetwork.service.user;//package com.cg.service.User;
+package com.cg.socialnetwork.service.User;
+//package com.cg.service.User;
 //
 
 
 import com.cg.socialnetwork.model.User;
 //import com.cg.socialnetwork.model.dto.UserDTO;
+import com.cg.socialnetwork.model.dto.SearchDTO;
 import com.cg.socialnetwork.model.dto.UserDTO;
 import com.cg.socialnetwork.service.IGeneralService;
 
@@ -15,4 +17,8 @@ public interface IUserService extends IGeneralService<User> {
     Optional<User> findByEmailAndPassword(String email, String password);
 
     Optional<User> findByEmail(String email);
+
+    Iterable<SearchDTO> findByNameContaining(String keyword);
+
+    Iterable<User> findAllByFullNameContaining(String keyword);
 }

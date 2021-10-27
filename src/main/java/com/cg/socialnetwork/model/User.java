@@ -43,23 +43,24 @@ public class User extends BaseEntity {
 
     private Boolean status;
 
+    private String fullName;
+
 //    @Column(columnDefinition = "integer default 1")
     private int city;
 
 //    @Column(columnDefinition = "integer default 25")
     private int country;
 
-    @ManyToOne
-    @JoinColumn(name = "image_id",referencedColumnName = "id")
-    private Media avatar;
+    @OneToOne
+//    @JoinColumn(name = "image_id",referencedColumnName = "id")
+    private Avatar avatar;
 
 //    @ManyToOne
 //    @JoinColumn(name = "role_id",referencedColumnName = "id")
 //    private Role role;
 
-    @ManyToOne
-    @JoinColumn(name = "background_id",referencedColumnName = "id")
-    private Media background;
+    @OneToOne
+    private Background background;
 
 //    private boolean status = true;
 //    @PrePersist
@@ -79,6 +80,7 @@ public class User extends BaseEntity {
         this.gender = gender;
         this.city = city;
         this.country = country;
+        this.fullName= firstName + " " +lastName;
     }
 
     public User(String email, @NotBlank String password, @NotBlank String firstName, @NotBlank String lastName, @NotBlank Date dateOfBirth, Gender gender, Boolean status) {
@@ -89,6 +91,7 @@ public class User extends BaseEntity {
         this.dateOfBirth = dateOfBirth;
         this.gender = gender;
         this.status = status;
+        this.fullName= firstName + " " +lastName;
     }
 
     public UserDTO toUserDTOAdmin(){

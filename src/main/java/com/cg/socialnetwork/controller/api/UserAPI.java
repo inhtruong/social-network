@@ -4,7 +4,7 @@ package com.cg.socialnetwork.controller.api;//package com.cg.controller.api;
 
 import com.cg.socialnetwork.exception.DataInputException;
 import com.cg.socialnetwork.model.User;
-import com.cg.socialnetwork.service.user.IUserService;
+import com.cg.socialnetwork.service.User.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;

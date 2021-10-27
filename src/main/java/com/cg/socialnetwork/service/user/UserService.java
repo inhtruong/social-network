@@ -1,17 +1,18 @@
-package com.cg.socialnetwork.service.user;//package com.cg.service.User;
-//
+package com.cg.socialnetwork.service.User;
 
 import com.cg.socialnetwork.model.User;
 //import com.cg.socialnetwork.model.dto.UserDTO;
+import com.cg.socialnetwork.model.dto.SearchDTO;
 import com.cg.socialnetwork.model.dto.UserDTO;
 import com.cg.socialnetwork.repository.UserRepository;
+import com.cg.socialnetwork.service.User.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
-public class UserService implements com.cg.socialnetwork.service.user.IUserService {
+public class UserService implements IUserService {
 
     @Autowired
     private UserRepository userRepository;
@@ -49,5 +50,15 @@ public class UserService implements com.cg.socialnetwork.service.user.IUserServi
     @Override
     public Iterable<UserDTO> userList() {
         return userRepository.userList();
+    }
+
+    @Override
+    public Iterable<SearchDTO> findByNameContaining(String keyword) {
+        return userRepository.findByNameContaining(keyword);
+    }
+
+    @Override
+    public Iterable<User> findAllByFullNameContaining(String keyword) {
+        return userRepository.findAllByFullNameContaining(keyword);
     }
 }

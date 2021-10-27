@@ -11,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class AdminController {
 
     @Autowired
-    private com.cg.socialnetwork.service.user.IUserService userService;
+    private com.cg.socialnetwork.service.User.IUserService userService;
 
     @GetMapping("")
     public ModelAndView adminDashboard(){
