@@ -51,17 +51,4 @@ public class SocialController {
         return modelAndView;
     }
 
-//    @GetMapping("/{id}")
-//    public ModelAndView showUser(@PathVariable long id){
-//
-//        Optional<User> user = userService.findById(id);
-//        Optional<UserDTO> userDTO = userService.findByIdDTO(id);
-//        if (!user.isPresent()){
-//            return new ModelAndView("/error");
-//        }
-//        ModelAndView modelAndView = new ModelAndView("/profile");
-//        modelAndView.addObject("user",user);
-//        modelAndView.addObject("userDTO", userDTO);
-//        return modelAndView;
-//    }
 }
