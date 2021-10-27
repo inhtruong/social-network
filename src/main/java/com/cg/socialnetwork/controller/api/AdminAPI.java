@@ -114,7 +114,7 @@ public class AdminAPI {
 //                .domain("bank-transaction.azurewebsites.net")
                 .domain("localhost")
                 .build();
-        System.out.println(jwtResponse);
+//        System.out.println(jwtResponse);
         return ResponseEntity
                 .ok()
                 .header(HttpHeaders.SET_COOKIE, springCookie.toString())

@@ -28,7 +28,7 @@
                     <img th:src="${user.avatar.url}" alt="">
                     <div>
                         <p th:text="${user.firstName}"></p>
-                        <a th:href="@{/profile/__${user.id}__}">See your profile</a>
+                        <a th:href="@{/profiles/__${user.id}__}">See your profile</a>
 <!--                        <a th:href="/profile/${id}">See your profile</a>-->
                     </div>
                 </div>
