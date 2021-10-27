@@ -13,23 +13,21 @@
         </div>
         <div class="main-right">
             <div class="main-right__login">
-                <form th:action="@{/login}" method="POST" id="frm-login" th:object="${user}">
+                <form method="POST" id="frm-login">
                     <div class="login-element login-input">
-                        <input type="email" name="email" class="input-email" placeholder="Email address or phone number">
+                        <input type="email" id="emailLogin" name="email" class="input-email" placeholder="Email address or phone number">
                     </div>
                     <div class="login-element login-input">
-                        <input type="password" name="password" class="input-pw" placeholder="Password">
+                        <input type="password" id="passwordLogin" name="password" class="input-pw" placeholder="Password">
                     </div>
 
                     <div class="login-element">
                         <h4 style="text-align:center" class="btn-danger" th:text="${mess}"></h4>
                     </div>
-
-                    <div class="login-element login-button">
-                        <button type="submit" class="login-btn">Log In</button>
-                        <!--                        <input type="submit" value="login">-->
-                    </div>
                 </form>
+                <div class="login-element login-button">
+                    <button class="login-btn" id="btnLogin">Log In</button>
+                </div>
 
                 <div class="login-element login-link">
                     <a href="#">Forgotten account?</a>
@@ -256,7 +254,9 @@
                     minlength: "Họ tên tối thiểu 5 ký tự",
                     maxlength: "Họ tên tối đa 50 ký tự"
                 }
-            },
+            },submitHandler: function () {
+                login();
+            }
         });
 
         btnSignUp.on("click", function () {
@@ -346,7 +346,10 @@
             }
         });
 
-
+        //onclick login
+        $("#btnLogin").on("click", function () {
+            frmLogin.submit();
+        })
 
         // function sign up
         signUpAccount = () => {
@@ -364,6 +367,31 @@
                 "gender": $("#frm-sign-up input[type='radio']:checked").val()
             }
             return account;
+        }
+
+        login = () => {
+            let account = {
+                email: $('#emailLogin').val(),
+                password: $('#passwordLogin').val()
+            }
+            // console.log(account)
+            //
+            $.ajax({
+                type: "POST",
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                url: location.origin +"/api/admin",
+                data: JSON.stringify(account)
+            }).done((data) => {
+                // console.log(data);
+                setTimeout(function () {
+                    window.location.href = "/social";
+                }, 1000);
+            }).fail(function () {
+                alert("The account or password is incorrect, please check the information again", "error");
+            });
         }
 
         // ajax sign up

@@ -18,15 +18,22 @@ public interface UserRepository extends JpaRepository<User, Long> {
             "c.lastName, c.email, c.gender, c.status) from User c")
     Iterable<UserDTO> userList();
 
-//    @Query(value = "select new com.cg.socialnetwork.model.dto.UserDTO (c.password, c.email) from User c")
-//    Iterable<UserDTO> userList();
+    @Query(value = "select new com.cg.socialnetwork.model.dto.UserDTO " +
+            "(c.id, c.avatar.url, c.background.url) " +
+            "from User c WHERE c.id = :id")
+    Optional<UserDTO> findByIdDTO(@Param("id") Long id);
 
     Optional<User> findByEmailAndPassword(String email, String password);
 
     Optional<User> findByEmail(String email);
 
-    @Query("SELECT new com.cg.socialnetwork.model.dto.SearchDTO(c.id, c.fullName) FROM User c WHERE c.fullName LIKE %:keyWord%")
+
+    @Query("SELECT new com.cg.socialnetwork.model.dto.SearchDTO(c.id, c.fullName, c.avatar.url) FROM User c WHERE c.fullName LIKE %:keyWord%")
     Iterable<SearchDTO> findByNameContaining(@Param("keyWord") String keyword);
 
     Iterable<User> findAllByFullNameContaining(String keyword);
+
+    @Query("SELECT NEW com.cg.socialnetwork.model.dto.UserDTO (u.id, u.email) FROM User u WHERE u.email = ?1")
+    UserDTO findUserByEmail(String email);
+
 }

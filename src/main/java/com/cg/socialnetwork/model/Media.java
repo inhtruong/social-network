@@ -25,6 +25,10 @@ public class Media {
 
     private String url;
 
+    @ManyToOne
+    @JoinColumn(name = "post_id",referencedColumnName = "id")
+    private Post post;
+
     public Media(long id) {
         this.id = id;
     }

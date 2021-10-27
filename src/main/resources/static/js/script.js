@@ -20,6 +20,10 @@ let page = {
     }
 }
 
+page.element.postBtn = $(".post-btn");
+page.element.logout = $(".settings-links a.logout");
+page.element.postContent = $(".post-content");
+
 showSettings.onclick = function() {
     settings.classList.toggle("active");
 }
@@ -52,6 +56,12 @@ postContent.oninput = () => {
         postBtn.classList.remove("active");
     }
 };
+page.element.logout.on("click", function () {
+    setTimeout(function () {
+        $.removeCookie("JWT");
+    }, 1000);
+
+});
 
 page.command.postStatus = () => {
     $(".main-content .new-feed").prepend(`
@@ -101,15 +111,31 @@ page.loadData.newFeed = () => {
     });
 }
 
-$(".post-btn").on("click", (e) => {
+page.element.postBtn.on("click", (e) => {
     e.preventDefault();
-    let content = postContent.value;
+    let content = page.element.postContent.val();
 
-    if (content !== "") {
+
+    $.ajax({
+        type: "POST",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        url: location.origin +"/api/post",
+        data: JSON.stringify(post)
+    }).done((data) => {
+        console.log(data)
         post.content = content;
-        page.command.postStatus();
-    }
-   
+        setTimeout(function () {
+            if(post.content !== "") {
+                page.command.postStatus();
+            }
+        }, 1000);
+    }).fail(function () {
+        alert("Error warning", "error");
+    });
+
 });
 
 

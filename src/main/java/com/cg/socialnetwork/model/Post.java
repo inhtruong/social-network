@@ -25,9 +25,9 @@ public class Post extends BaseEntity {
 
     private String content;
 
-    @ManyToOne
-    @JoinColumn(name = "image_id",referencedColumnName = "id")
-    private Media media;
+//    @ManyToOne
+//    @JoinColumn(name = "image_id",referencedColumnName = "id")
+//    private Media media;
 
 
 }

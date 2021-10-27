@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title th:text="${user.get().firstName}"></title>
+    <title th:text="${user.firstName}"></title>
     <th:block th:replace = "layout/head :: head">
     </th:block>
 </head>
@@ -15,7 +15,10 @@
     <!--------------- Heading End --------------->
 
     <div class="profile-container">
-        <img src="/images/cover.png" alt="" class="cover-img">
+        <div class="cover-container">
+            <img th:src="${user.background.url}" alt="" class="cover-img">
+        </div>
+
 
         <th:block th:replace = "layout/profile-details :: profile">
         </th:block>
@@ -27,11 +30,11 @@
                     <p class="intro-text">Believe in yourself <img src="/images/feeling.png" alt=""></p>
                     <hr>
                     <ul>
-                        <li><img src="/images/profile-job.png" alt=""> <span th:text="${user.get().firstName}"></span></li>
-                        <li><img src="/images/profile-study.png" alt=""> <span th:text="${user.get().email}"></span></li>
-                        <li><img src="/images/profile-study.png" alt=""> <span th:text="${user.get().gender}"></span></li>
-                        <li><img src="/images/profile-home.png" alt=""> <span th:text="${user.get().dateOfBirth}"></span></li>
-                        <li><img src="/images/profile-location.png" alt=""> <span th:text="${user.get().city}"></span></li>
+                        <li><img src="/images/profile-job.png" alt=""> <span th:text="${user.firstName}"></span></li>
+                        <li><img src="/images/profile-study.png" alt=""> <span th:text="${user.email}"></span></li>
+                        <li><img src="/images/profile-study.png" alt=""> <span th:text="${user.gender}"></span></li>
+                        <li><img src="/images/profile-home.png" alt=""> <span th:text="${user.dateOfBirth}"></span></li>
+                        <li><img src="/images/profile-location.png" alt=""> <span th:text="${user.city}"></span></li>
 
                     </ul>
                 </div>
@@ -71,7 +74,7 @@
                 </div>
             </div>
             <div class="post-col">
-                <th:block th:replace="layout/write-post-container :: write-post-container">
+                <th:block th:replace="layout/write-post-container :: profile">
                 </th:block>
 
                 <th:block th:replace="layout/new-feed :: new-feed">

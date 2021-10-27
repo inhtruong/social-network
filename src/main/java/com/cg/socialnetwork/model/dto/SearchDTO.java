@@ -12,9 +12,4 @@ public class SearchDTO {
     private long id;
     private String name;
     private String avatar;
-
-    public SearchDTO(long id, String name) {
-        this.id = id;
-        this.name = name;
-    }
 }
